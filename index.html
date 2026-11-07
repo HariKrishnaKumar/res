@@ -9,7 +9,7 @@
     <meta property="og:description" content="Interactive developer portfolio of Hari Krishna Kumar — Full-Stack Developer, AI Enthusiast and Technical Educator." />
     <meta property="og:type" content="profile" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href="/mascot/cursor-purple.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,6 +20,22 @@
         "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
       }
     }
+    </script>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('hkk-theme');
+          var theme = saved === 'light' || saved === 'dark'
+            ? saved
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (error) {
+          document.documentElement.setAttribute(
+            'data-theme',
+            window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          );
+        }
+      })();
     </script>
     <style>
 :root{--bg:#f1fbfa;--bg2:#e3f4f3;--ink:#0e3a3d;--mid:#5d8284;--faint:#9dbcbc;--line:#d3e8e7;--coral:#ff5a3c;--teal:#0f9d8a;--aqua:#46c9bf;--card:rgba(255,255,255,.72)}
@@ -267,23 +283,8 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 .contact-v{font-size:.78rem;font-weight:600;letter-spacing:.02em;overflow-wrap:anywhere}
 .contact-l{font-size:.58rem;letter-spacing:.09em;color:var(--coral);margin-top:.1rem}
 
-/* ---------- mascot ---------- */
-.mascot{position:fixed;left:0;top:0;width:38px;height:38px;z-index:9000;pointer-events:none;opacity:0;transition:opacity .18s,width .16s,height .16s;will-change:transform;filter:drop-shadow(0 0 1.5px rgba(14,58,61,.5)) drop-shadow(0 .5rem 1rem rgba(30,16,70,.28))}
-.mascot.is-on{opacity:1}
-.mascot img{display:block;width:100%;height:100%;object-fit:contain}
-.mascot.is-pop{width:62px;height:62px}
-.mascot.is-pop img{animation:mascotPop .44s cubic-bezier(.2,1.4,.4,1)}
-@keyframes mascotPop{0%{transform:scale(.72) rotate(-7deg)}55%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1)}}
-.mascot-bubble{position:fixed;left:0;top:0;z-index:9001;max-width:min(20rem,74vw);padding:.7rem .85rem .75rem;background:rgba(255,255,255,.975);border:1px solid var(--line);border-left:.26rem solid var(--coral);box-shadow:0 1.2rem 3rem rgba(30,80,80,.17);pointer-events:none;opacity:0;visibility:hidden;transition:opacity .16s,visibility .16s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.mascot-bubble.is-open{opacity:1;visibility:visible}
-.mascot-bubble .k{display:block;font-size:.5rem;letter-spacing:.2em;color:var(--faint);margin-bottom:.32rem}
-.mascot-bubble p{font-size:.68rem;line-height:1.6;color:var(--ink);font-weight:500}
-@media (hover:hover) and (pointer:fine){
-  html.mascot-on,html.mascot-on body,html.mascot-on body *{cursor:none!important}
-}
 @media (prefers-reduced-motion:reduce){
-  .mascot,.mascot-bubble,.dossier,.dossier-shell,.contact-card{transition:none}
-  .mascot.is-pop img{animation:none}
+  .dossier,.dossier-shell,.contact-card{transition:none}
   .dossier-scroll{scroll-behavior:auto}
 }
 
@@ -339,6 +340,297 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
   .dossier-scroll{padding-bottom:2rem}
   .dsec{padding:1.8rem 0 1.5rem}
 }
+
+/* ============================================================
+   CORRECTION PASS — theme system, readable dossier typography,
+   right-side profile photograph and responsive refinements
+   ============================================================ */
+
+:root{
+  --surface:#fff;
+  --surface-2:rgba(255,255,255,.64);
+  --surface-3:rgba(255,255,255,.62);
+  --surface-top:rgba(255,255,255,.82);
+  --surface-bar:rgba(255,255,255,.96);
+  --card-border:rgba(255,255,255,.8);
+  --card-shadow:0 .4rem 2rem rgba(40,110,110,.07);
+  --shell-shadow:-2.5rem 0 6rem rgba(20,80,80,.13);
+  --shell-bg:linear-gradient(180deg,#fafefd,#f0faf9);
+  --veil-bg:rgba(14,58,61,.14);
+  --page-bg:radial-gradient(90% 80% at 50% 42%,#fafefd 0%,var(--bg) 55%,var(--bg2) 100%);
+  --btn-bg:rgba(255,255,255,.75);
+  --chip-bg:rgba(70,201,191,.11);
+  --chip-border:rgba(15,157,138,.24);
+  --chart-grid:#d3e8e7;
+  --chart-secondary:#b9d4d3;
+  --hor-bg:#f7fdfc;
+  --hor-water:#dcf0ee;
+  --hor-line:#0e3a3d;
+  --project-art-bg:linear-gradient(180deg,#f8fdfc,#eaf7f5);
+  --ill-grid:#dcefed;
+  --ill-line:#0e3a3d;
+  --ill-faint:#9dbcbc;
+  --ill-faint2:#cfe5e4;
+  --ill-dot:#0e3a3d;
+  --ill-wire:#0f9d8a;
+  --ill-hot:#ff5a3c;
+  --toggle-bg:rgba(255,255,255,.82);
+  --toggle-shadow:0 .4rem 1.4rem rgba(40,110,110,.1);
+  --profile-shadow:0 1.2rem 3rem rgba(40,110,110,.12);
+}
+[data-theme="dark"]{
+  --bg:#0a1213;
+  --bg2:#060c0d;
+  --ink:#e7f5f3;
+  --mid:#a6c4c2;
+  --faint:#6f9291;
+  --line:#233d3f;
+  --coral:#ff6b4f;
+  --teal:#35d3ba;
+  --aqua:#5fe0d5;
+  --card:rgba(13,26,28,.82);
+  --surface:#0f1d1f;
+  --surface-2:rgba(15,29,31,.82);
+  --surface-3:rgba(15,29,31,.72);
+  --surface-top:rgba(8,17,18,.9);
+  --surface-bar:rgba(8,17,18,.96);
+  --card-border:rgba(120,180,180,.18);
+  --card-shadow:0 .5rem 2rem rgba(0,0,0,.38);
+  --shell-shadow:-2.5rem 0 6rem rgba(0,0,0,.52);
+  --shell-bg:linear-gradient(180deg,#0d191a,#081112);
+  --veil-bg:rgba(0,0,0,.58);
+  --page-bg:radial-gradient(90% 80% at 50% 42%,#162829 0%,var(--bg) 55%,var(--bg2) 100%);
+  --btn-bg:rgba(18,36,38,.82);
+  --chip-bg:rgba(53,211,186,.12);
+  --chip-border:rgba(53,211,186,.3);
+  --chart-grid:#264244;
+  --chart-secondary:#3b5c5d;
+  --hor-bg:#0d1a1b;
+  --hor-water:#163032;
+  --hor-line:#dcefed;
+  --project-art-bg:linear-gradient(180deg,#0e1c1e,#0a1516);
+  --ill-grid:#294546;
+  --ill-line:#d8eeec;
+  --ill-faint:#628887;
+  --ill-faint2:#2d4a4c;
+  --ill-dot:#d8eeec;
+  --ill-wire:#35d3ba;
+  --ill-hot:#ff6b4f;
+  --toggle-bg:rgba(15,29,31,.9);
+  --toggle-shadow:0 .5rem 1.4rem rgba(0,0,0,.4);
+  --profile-shadow:0 1.2rem 3rem rgba(0,0,0,.4);
+}
+
+/* theme surfaces — dashboard and dossier share the same palette */
+html,body{background:var(--bg)}
+.page{background:var(--page-bg)}
+.card{background:var(--card);border-color:var(--card-border);box-shadow:var(--card-shadow)}
+.logcard{background:var(--card);border-color:var(--card-border);box-shadow:var(--card-shadow)}
+.btns button{background:var(--btn-bg)}
+#knob{background:var(--surface)}
+.project-art{background:var(--project-art-bg)}
+.skill-card,.role,.edu-main,.edu-gpa,.project,.contact-card{background:var(--surface-2)}
+.chip{background:var(--chip-bg);border-color:var(--chip-border)}
+.dossier-veil{background:var(--veil-bg)}
+.dossier-shell{width:min(90rem,80vw);background:var(--shell-bg);box-shadow:var(--shell-shadow)}
+.dossier-top{background:var(--surface-top)}
+.dnav{background:var(--surface-2)}
+.dossier-close{background:var(--surface)}
+.mbar{background:var(--surface-bar)}
+.mbar button,.mbar a{background:var(--surface-2)}
+body.panels-open .hud{background:linear-gradient(180deg,var(--surface-top) 0%,var(--bg) 60%,var(--bg2) 100%)}
+body.panels-open .hud #cAsm{background:var(--card);border-color:var(--card-border);box-shadow:var(--card-shadow)}
+[data-theme="dark"] .card[data-section]:hover{box-shadow:0 .4rem 2.2rem rgba(0,0,0,.42)}
+#hor .hor-bg{fill:var(--hor-bg);stroke:var(--line)}
+#hor .hor-water{fill:var(--hor-water)}
+#hor .hor-line{stroke:var(--hor-line)}
+#hor .hor-hot{stroke:var(--coral)}
+.ill-grid line{stroke:var(--ill-grid)}
+.ill-line{stroke:var(--ill-line)}
+.ill-faint{stroke:var(--ill-faint)!important}
+.ill-faint2{stroke:var(--ill-faint2)!important}
+.ill-dot circle{fill:var(--ill-dot)}
+.ill-wire{stroke:var(--ill-wire)!important}
+.ill-hot{stroke:var(--ill-hot)!important}
+.ill-scan{stroke:var(--ill-hot)}
+
+/* theme toggle */
+.theme-toggle{
+  position:fixed;right:12px;top:20px;z-index:130;
+  width:40px;height:40px;display:grid;place-items:center;
+  background:var(--toggle-bg);border:1px solid var(--line);color:var(--ink);
+  box-shadow:var(--toggle-shadow);cursor:pointer;pointer-events:auto;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:border-color .15s,color .15s,background .15s;
+}
+.theme-toggle:hover{border-color:var(--coral);color:var(--coral)}
+.theme-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.theme-icon{width:18px;height:18px;display:block}
+.theme-toggle .theme-icon.moon{display:none}
+[data-theme="dark"] .theme-toggle .theme-icon.sun{display:none}
+[data-theme="dark"] .theme-toggle .theme-icon.moon{display:block}
+.dossier-top .dossier-theme{position:static;flex:none;margin-left:auto;width:44px;height:44px;box-shadow:none;background:var(--surface)}
+.meta{right:5.8rem}
+@media (max-width:1200px) and (min-width:821px){.meta{display:none}}
+
+/* the dossier is a scroll surface; the page behind it must stay put */
+html.dossier-open,html.dossier-open body{overflow:hidden!important}
+.dossier-shell{overflow:hidden}
+.dossier-top{flex-wrap:wrap;align-items:center;gap:.85rem 1rem;padding:1.1rem 2rem}
+.dossier-id{font-size:13px;line-height:1.4}
+.dossier-id span{font-size:15px;margin-top:6px}
+.dossier-nav{order:3;flex:1 0 100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding-bottom:2px;scrollbar-width:none}
+.dossier-nav::-webkit-scrollbar{display:none}
+.dnav{flex:0 0 auto;white-space:nowrap;font-size:14px;line-height:1.2;letter-spacing:.08em;padding:10px 14px}
+.dossier-dl{font-size:12px;line-height:1.2;padding:12px 10px;margin-left:0}
+.dossier-close{width:44px;height:44px;font-size:24px;line-height:1}
+.dossier-scroll{padding:0 56px 88px}
+
+/* dossier typography — intentionally much larger than the simulator HUD */
+.dsec{padding:64px 0 56px}
+.dsec-head{align-items:center;gap:14px;margin-bottom:32px}
+.dsec-no{font-size:14px;line-height:1.4;letter-spacing:.18em}
+.dsec-head h2{font-size:clamp(32px,2.4vw,38px);line-height:1.15;letter-spacing:-.015em}
+.dsec-tag{font-size:13px;line-height:1.4;letter-spacing:.14em}
+.dsec-foot{font-size:13px;line-height:1.6;letter-spacing:.1em;margin-top:32px;padding-top:16px}
+#sec-contact{min-height:calc(100vh - 8rem)}
+
+/* about / profile */
+.about-grid{grid-template-columns:minmax(0,1.35fr) minmax(250px,.85fr);gap:48px;align-items:start}
+.about-main{min-width:0}
+.about-eyebrow{font-size:13px;line-height:1.4;letter-spacing:.14em;color:var(--teal);font-weight:600;text-transform:uppercase}
+.about-eyebrow .dot{margin-right:8px}
+.about-name{font-size:clamp(36px,3.2vw,44px);line-height:1.08;letter-spacing:-.025em;padding-bottom:2px}
+.about-role{font-size:clamp(14px,.95vw,16px);line-height:1.6;letter-spacing:.1em;margin-top:12px}
+.about-copy{font-size:clamp(18px,1.35vw,20px);line-height:1.8;margin-top:22px;max-width:44rem}
+.about-actions{gap:12px;margin-top:28px}
+.btn-solid,.btn-line{font-size:14px;line-height:1.2;padding:14px 20px}
+.about-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px;border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:24px;margin-top:32px}
+.about-facts dt{font-size:13px;line-height:1.4}
+.about-facts dd{font-size:17px;line-height:1.5;margin-top:6px}
+.profile-card{margin:0;min-width:0}
+.profile-frame{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);background:var(--surface-2);box-shadow:var(--profile-shadow)}
+.profile-frame::before,.profile-frame::after{content:"";position:absolute;z-index:3;width:24px;height:24px;border-color:var(--coral);border-style:solid;pointer-events:none}
+.profile-frame::before{left:10px;top:10px;border-width:1px 0 0 1px}
+.profile-frame::after{right:10px;bottom:10px;border-width:0 1px 1px 0}
+.profile-photo{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.94) contrast(1.02)}
+.profile-frame.is-missing .profile-photo{display:none}
+.profile-placeholder{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;color:var(--mid);background:linear-gradient(135deg,var(--surface-2),transparent 60%),repeating-linear-gradient(0deg,transparent 0 19px,var(--line) 19px 20px),repeating-linear-gradient(90deg,transparent 0 19px,var(--line) 19px 20px)}
+.profile-mark{font:700 clamp(48px,5vw,72px)/1 Inter,sans-serif;letter-spacing:-.05em;color:var(--ink)}
+.profile-ph-label{font-size:13px;line-height:1.4;letter-spacing:.18em;font-weight:600;color:var(--coral)}
+.profile-placeholder small{font-size:11px;line-height:1.6;letter-spacing:.06em;color:var(--faint);max-width:220px}
+.profile-scan{position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(14,58,61,.035) 3px 4px);mix-blend-mode:multiply}
+[data-theme="dark"] .profile-scan{background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 3px 4px);mix-blend-mode:screen}
+.profile-caption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:12px;line-height:1.5;letter-spacing:.1em;color:var(--faint)}
+
+/* skills */
+.skill-grid{gap:16px}
+.skill-card{padding:20px 22px}
+.skill-top{align-items:flex-start;gap:8px}
+.skill-no{font-size:13px;line-height:1.4}
+.skill-top h3{font-size:clamp(24px,1.6vw,28px);line-height:1.25;letter-spacing:.01em}
+.skill-code{font-size:12px;line-height:1.3;padding:4px 7px;margin-top:3px}
+.chip-row{gap:8px;margin-top:16px}
+.chip{font-size:15px;line-height:1.35;padding:6px 10px;letter-spacing:.02em}
+
+/* experience */
+.role-list{gap:18px}
+.role{grid-template-columns:92px minmax(0,1fr)}
+.role-side{padding:22px 16px;gap:10px}
+.role-no{font-size:14px;line-height:1.4}
+.role-code{font-size:12px;line-height:1.5;letter-spacing:.1em}
+.role-main{padding:24px 28px}
+.role-main h3{font-size:clamp(24px,1.7vw,28px);line-height:1.25}
+.role-org{font-size:15px;line-height:1.5;margin-top:8px}
+.role-main ul{margin-top:18px;gap:10px}
+.role-main li{font-size:clamp(17px,1.15vw,19px);line-height:1.65;padding-left:22px}
+.role-main li:before{width:10px;top:.8em}
+
+/* education */
+.edu-grid{grid-template-columns:minmax(0,1.35fr) minmax(180px,.65fr);gap:16px}
+.edu-main,.edu-gpa{padding:28px 30px}
+.edu-label{font-size:13px;line-height:1.4}
+.edu-main h3{font-size:clamp(24px,1.7vw,28px);line-height:1.4;margin:12px 0 16px;max-width:32rem}
+.edu-status{font-size:15px;line-height:1.5}
+.edu-num{font-size:clamp(46px,4vw,58px);line-height:1;margin-top:12px}
+.edu-num small{font-size:18px}
+
+/* projects */
+.project-grid{gap:16px}
+.project{padding:14px}
+.project-meta{font-size:12px;line-height:1.4;margin-top:14px}
+.project h3{font-size:clamp(19px,1.3vw,22px);line-height:1.5;margin-top:8px}
+
+/* contact */
+.contact-grid{gap:16px}
+.contact-card{padding:20px 22px;gap:6px}
+.contact-k{font-size:13px;line-height:1.4}
+.contact-v{font-size:clamp(17px,1.15vw,19px);line-height:1.5}
+.contact-l{font-size:14px;line-height:1.5;margin-top:4px}
+
+/* tablet: keep the dossier readable without cramming three columns */
+@media (max-width:1180px) and (min-width:821px){
+  .dossier-shell{width:min(90rem,88vw)}
+  .dossier-scroll{padding:0 40px 72px}
+  .about-grid{grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);gap:32px}
+  .skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .project-grid{grid-template-columns:1fr}
+  .dsec{padding:52px 0 46px}
+  .profile-caption{flex-direction:column;gap:4px}
+}
+
+/* mobile dossier */
+@media (max-width:820px){
+  .theme-toggle{top:12px;right:12px;width:44px;height:44px}
+  .dossier-top .dossier-theme{width:44px;height:44px}
+  .dossier-shell{width:100%}
+  .dossier-top{padding:12px 14px;gap:8px}
+  .dossier-id{display:none}
+  .dossier-dl{font-size:11px;padding:11px 8px}
+  .dossier-close{width:44px;height:44px;font-size:23px}
+  .dossier-scroll{padding:0 20px 96px}
+  .dsec{padding:44px 0 40px}
+  .dsec-head h2{font-size:clamp(30px,8vw,36px)}
+  .dsec-head{margin-bottom:24px}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-main{display:flex;flex-direction:column}
+  .profile-card{order:2;width:100%;max-width:420px;margin:0 auto}
+  .about-name{font-size:clamp(34px,10vw,42px)}
+  .about-role{font-size:14px}
+  .about-copy{font-size:18px;line-height:1.75}
+  .about-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+  .about-facts dd{font-size:16px}
+  .skill-grid,.project-grid,.contact-grid{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .role{grid-template-columns:72px minmax(0,1fr)}
+  .role-main{padding:20px}
+  .role-main h3{font-size:24px}
+  .role-main li{font-size:17px}
+  .skill-top h3{font-size:24px}
+  .chip{font-size:15px}
+  .project h3{font-size:20px}
+  .contact-v{font-size:18px}
+  .dsec-foot{font-size:12px;line-height:1.6}
+}
+
+@media (max-width:480px){
+  .dsec-head{flex-wrap:wrap;gap:8px}
+  .dsec-head h2{font-size:30px;flex-basis:100%}
+  .dsec-tag{margin-left:0;text-align:left}
+  .about-name{font-size:34px}
+  .about-facts{grid-template-columns:1fr}
+  .role{grid-template-columns:1fr}
+  .role-side{flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid var(--line);padding:12px 18px}
+  .role-code{margin-left:auto}
+  .role-main{padding:18px}
+  .dossier-scroll{padding:0 16px 96px}
+  .profile-caption{font-size:11px;flex-wrap:wrap}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .theme-toggle,.dossier,.dossier-shell,.contact-card{transition:none}
+  .dossier-scroll{scroll-behavior:auto}
+}
     </style>
   </head>
   <body>
@@ -348,42 +640,46 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
       <div id="tags"></div>
       <div class="hud" id="hudPanels">
         <div class="logo"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M7 20C7 11 13 6 20 6s13 5 13 14c-3 2-6 1-8 0-3 1.500-7 1.500-10 0-2 1-5 2-8 0Z"/><path d="M12 23c0 4-3 5-2 9M17 24c0 4-2 7 0 11M23 24c0 4 2 7 0 11M28 23c0 4 3 5 2 9"/></svg>HKK</div>
-        <div class="head" data-assistant="about" data-section="about"><div class="k">FULL-STACK DEVELOPER / AI ENTHUSIAST / TECHNICAL EDUCATOR</div><h1>Hari Krishna Kumar<em>/</em></h1><div class="s">YAJURVEDH / PERSONAL DEVELOPER PORTFOLIO</div></div>
+        <div class="head" data-section="about"><div class="k">FULL-STACK DEVELOPER / AI ENTHUSIAST / TECHNICAL EDUCATOR</div><h1>Hari Krishna Kumar<em>/</em></h1><div class="s">YAJURVEDH / PERSONAL DEVELOPER PORTFOLIO</div></div>
         <div class="load"><div class="row"><span>TECHNICAL EXPERTISE</span><b id="loadv">09 MODULES</b></div><div id="loadbar"></div><div class="row m"><span>LANGUAGES</span><span>FRAMEWORKS</span><span>AI · DATA</span></div></div>
         <div class="meta"><div>PROFILE<b>FULL-STACK DEV</b></div><div>EXPERIENCE<b id="rt">02 ROLES</b></div><div>STATUS<b id="st"><span class="dot"></span>OPEN TO WORK</b></div><div>OPERATOR<b>HARI KRISHNA KUMAR</b></div></div>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false" title="Toggle light/dark theme">
+          <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+        </button>
         <div class="plus" id="plus"></div>
         <div class="rulelab" style="left:27.6rem">PORTFOLIO · REV B</div>
         <div class="rulelab" style="right:27.6rem" id="iso">VIEW · PROFILE</div>
 
-        <section class="card l" id="cJet" data-assistant="skills" data-section="skills"><div class="ct"><span>TECHNICAL EXPERTISE</span><small>01</small></div>
+        <section class="card l" id="cJet" data-section="skills"><div class="ct"><span>TECHNICAL EXPERTISE</span><small>01</small></div>
           <div class="jr"><div class="big"><span id="kpa">09</span><small>MODULES</small></div><div class="big" style="font-size:1.9rem"><span id="thr">25</span> TECHS</div></div>
           <div class="foot" style="margin-top:.2rem"><span>SKILL MODULES</span><span>TECHNOLOGIES</span></div>
           <canvas id="chart"></canvas>
           <div class="foot"><span>LIVE SIGNAL <b id="pul">SIM</b></span><span id="sipst">AI · DATA · WEB</span></div></section>
-        <section class="card l" id="cPow" data-assistant="experience" data-section="experience"><div class="ct"><span>PROFESSIONAL EXPERIENCE</span><small>02</small></div>
+        <section class="card l" id="cPow" data-section="experience"><div class="ct"><span>PROFESSIONAL EXPERIENCE</span><small>02</small></div>
           <div class="jr" style="align-items:center"><div class="big"><span id="bat">02</span><small>ROLES</small></div><div id="batt"></div></div>
           <div class="tiny">POSITIONS HELD · OPEN TO OPPORTUNITIES</div>
           <div class="tri tiny"><div>ROLE<b>CTO</b></div><div>ORG<b>YAJURVEDH</b></div><div>ALSO<b>LECTURER</b></div></div></section>
-        <section class="card l" id="cArm" data-assistant="skills" data-section="skills"><div class="ct"><span>LANGUAGES &amp; FRAMEWORKS</span><small>03</small></div>
+        <section class="card l" id="cArm" data-section="skills"><div class="ct"><span>LANGUAGES &amp; FRAMEWORKS</span><small>03</small></div>
           <div class="foot" style="margin-top:.4rem;align-items:center"><span>CORE STACK — 08</span><span class="ctag" id="armtag">STACK</span></div>
           <div id="arms"></div>
           <div class="foot" style="margin-top:.55rem;border-top:1px solid var(--line);padding-top:.5rem"><span>COIL CURL <b id="armlive">0.00</b></span><span>3D TELEMETRY</span></div></section>
 
-        <section class="card r" id="cDep" data-assistant="education" data-section="education"><div class="ct"><span>EDUCATION</span><small>04</small></div>
-          <div class="dep"><svg id="hor" viewBox="-50 -50 100 100"><defs><clipPath id="hc"><circle r="47"/></clipPath></defs><circle r="47" fill="#f7fdfc" stroke="#cfe5e4"/><g clip-path="url(#hc)"><g id="hg"><rect x="-80" y="0" width="160" height="90" fill="#dcf0ee"/><line x1="-80" x2="80" stroke="#0e3a3d" stroke-width="1"/></g></g><path d="M-16 0h10l4 5 4-5h12" fill="none" stroke="#ff5a3c" stroke-width="1.800"/></svg>
+        <section class="card r" id="cDep" data-section="education"><div class="ct"><span>EDUCATION</span><small>04</small></div>
+          <div class="dep"><svg id="hor" viewBox="-50 -50 100 100"><defs><clipPath id="hc"><circle r="47"/></clipPath></defs><circle class="hor-bg" r="47"/><g clip-path="url(#hc)"><g id="hg"><rect class="hor-water" x="-80" y="0" width="160" height="90"/><line class="hor-line" x1="-80" x2="80" stroke-width="1"/></g></g><path class="hor-hot" d="M-16 0h10l4 5 4-5h12" fill="none" stroke-width="1.800"/></svg>
           <dl><dt>DEGREE</dt><dd id="dd">BCA</dd><dt>CGPA</dt><dd id="dv">8.06</dd><dt>FIELD</dt><dd id="dp">COMPUTER APPS</dd><dt>STATUS</dt><dd id="dr">COMPLETE</dd></dl></div>
           <div class="foot" style="border-top:1px solid var(--line);padding-top:.6rem;margin-top:.7rem"><span>LEVEL <b id="hold">UNDERGRAD</b></span><span>SCALE <b id="spd">10.0</b></span></div></section>
-        <section class="card r" id="cAsm" data-assistant="projects" data-section="projects"><div class="ct"><span>PROJECTS</span><small>05</small></div><div class="btns" id="asm"></div></section>
+        <section class="card r" id="cAsm" data-section="projects"><div class="ct"><span>PROJECTS</span><small>05</small></div><div class="btns" id="asm"></div></section>
         <section class="card r" id="cDis"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>06</small></div><div class="btns" id="nav"></div><div class="btns" id="dis"></div></section>
-        <section class="card r" id="cSub" data-assistant="experience" data-section="experience"><div class="ct"><span>PROFESSIONAL ROLES</span><small>07</small></div><div id="subs"></div></section>
+        <section class="card r" id="cSub" data-section="experience"><div class="ct"><span>PROFESSIONAL ROLES</span><small>07</small></div><div id="subs"></div></section>
 
-        <div id="mode" data-assistant="about" data-section="about"><div class="t">CURRENT FOCUS</div><div class="m" id="mm">FULL-STACK</div><div class="t" id="ms">SOFTWARE · AI · EDUCATION</div></div>
-        <section class="logcard" data-assistant="experience" data-section="experience"><div class="ct"><span>CAREER JOURNEY</span><small>08</small></div>
+        <div id="mode" data-section="about"><div class="t">CURRENT FOCUS</div><div class="m" id="mm">FULL-STACK</div><div class="t" id="ms">SOFTWARE · AI · EDUCATION</div></div>
+        <section class="logcard" data-section="experience"><div class="ct"><span>CAREER JOURNEY</span><small>08</small></div>
           <div class="lg"><button id="play" aria-label="Pause"><svg viewBox="0 0 12 12"><path id="pi" d="M2 1h3v10H2zM7 1h3v10H7z"/></svg></button>
             <div><div class="lgh"><span>CAREER</span><span id="msg"></span><span>PORTFOLIO</span></div>
             <div id="rail" role="slider" tabindex="0" aria-label="Career timeline" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0"><div class="b"></div><div id="fill"></div><div id="knob"></div></div>
             <div class="sm"><span id="tc">00:00 / 00:25</span><span>10 JOURNEY STOPS</span></div></div></div></section>
-        <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf" data-assistant="contact">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
+        <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
       </div>
     </main>
 
@@ -393,19 +689,20 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
         <div class="dossier-top">
           <div class="dossier-id">HKK / DOSSIER<span>DEVELOPER PROFILE</span></div>
           <nav class="dossier-nav" id="dossierNav" aria-label="Resume sections"></nav>
-          <a class="dossier-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf" data-assistant="contact">PDF ↓</a>
+          <button type="button" class="theme-toggle dossier-theme" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false" title="Toggle light/dark theme">
+            <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+          </button>
+          <a class="dossier-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a>
           <button type="button" class="dossier-close" data-close aria-label="Close dossier">×</button>
         </div>
         <div class="dossier-scroll" id="dossierScroll"></div>
       </div>
     </div>
 
-    <div class="mascot" id="mascot" aria-hidden="true"><img src="/mascot/cursor-purple.png" alt="" width="125" height="126" draggable="false" /></div>
-    <div class="mascot-bubble" id="mascotBubble" aria-hidden="true" role="status" aria-live="polite"><span class="k">GUIDE</span><p></p></div>
-
     <nav class="mbar" aria-label="Mobile actions">
       <button type="button" id="mPanels" aria-expanded="false" aria-controls="hudPanels">PANELS</button>
-      <button type="button" data-section="about" data-assistant="about">DOSSIER</button>
+      <button type="button" data-section="about">DOSSIER</button>
       <a href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME ↓</a>
     </nav>
 
@@ -414,7 +711,7 @@ import * as THREE from 'three';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import { RESUME, TOTAL_TECH } from './src/resume-data.js';
-import { initMascot, tickMascot } from './src/mascot.js';
+import { initTheme } from './src/theme.js';
 import { initNavigation } from './src/nav.js';
 
 const DUR = 25, ARMS = 8, N = 28, $ = id => document.getElementById(id);
@@ -751,7 +1048,6 @@ RESUME.projects.forEach(p => {
   b.textContent = p.code; b.title = p.title; b.className = 'project-btn';
   b.setAttribute('data-section', 'projects');
   b.setAttribute('data-project', p.id);
-  b.setAttribute('data-assistant', 'projects');
   b.onclick = () => seekTo(ASM[p.stage] - .05);
   $('asm').append(b);
   asmEls[p.stage] = b;
@@ -775,19 +1071,29 @@ const beat = t => { const x = (t * 1.8) % 1; return x < .42 ? Math.sin(x / .42 *
 const pressure = t => 18 + 1.4 * Math.sin(t * 1.3) + jetAt(t) * beat(t) * 78;
 
 const chart = $('chart'), cx = chart.getContext('2d');
+function chartPaletteNow() {
+  const s = getComputedStyle(document.documentElement);
+  return {
+    grid: s.getPropertyValue('--chart-grid').trim() || '#d3e8e7',
+    secondary: s.getPropertyValue('--chart-secondary').trim() || '#b9d4d3',
+    coral: s.getPropertyValue('--coral').trim() || '#ff5a3c',
+  };
+}
+let chartPalette = chartPaletteNow();
+document.addEventListener('themechange', () => { chartPalette = chartPaletteNow(); });
 function drawChart(t) {
   const w = chart.clientWidth, h = chart.clientHeight, dpr = Math.min(devicePixelRatio, 2);
   if (chart.width !== Math.round(w * dpr)) { chart.width = Math.round(w * dpr); chart.height = Math.round(h * dpr); }
   cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, w, h);
-  cx.strokeStyle = '#d3e8e7'; cx.lineWidth = 1;
+  cx.strokeStyle = chartPalette.grid; cx.lineWidth = 1;
   for (const y of [.25, .6, .92]) { cx.beginPath(); cx.moveTo(0, h * y); cx.lineTo(w, h * y); cx.stroke(); }
   const line = (lag, col, lw) => {
     cx.strokeStyle = col; cx.lineWidth = lw; cx.beginPath();
     for (let i = 0; i <= 90; i++) { const tt = Math.max(0, t - lag - (90 - i) / 90 * 2.4), v = pressure(tt) / 100; const x = i / 90 * (w - 8), y = h * (.92 - v * .72); i ? cx.lineTo(x, y) : cx.moveTo(x, y); }
     cx.stroke();
   };
-  line(.14, '#b9d4d3', 1); line(0, '#ff5a3c', 1.6);
-  const v = pressure(t) / 100; cx.fillStyle = '#ff5a3c'; cx.beginPath(); cx.arc(w - 8, h * (.92 - v * .72), 3, 0, 7); cx.fill();
+  line(.14, chartPalette.secondary, 1); line(0, chartPalette.coral, 1.6);
+  const v = pressure(t) / 100; cx.fillStyle = chartPalette.coral; cx.beginPath(); cx.arc(w - 8, h * (.92 - v * .72), 3, 0, 7); cx.fill();
 }
 
 /* ---------- layout ---------- */
@@ -937,14 +1243,13 @@ let last = performance.now();
 function loop(now) {
   const dt = Math.min(.05, (now - last) / 1000); last = now;
   if (!frozen) { if (playing && !scrub) playT = (playT + dt) % DUR; draw(playT, now / 1000); }
-  tickMascot(now);
   requestAnimationFrame(loop);
 }
 let frozen = false;
 
 /* ---------- portfolio wiring ---------- */
+initTheme();
 initNavigation();
-initMascot();
 
 $('kpa').textContent = String(RESUME.skillGroups.length).padStart(2, '0');
 $('thr').textContent = String(TOTAL_TECH).padStart(2, '0');

@@ -49,12 +49,22 @@ displayed.
   Navigation, Roles, Career Journey) to open the matching dossier section.
 - Project buttons open the project section; HERO / ARM R2 / SIPHON seek the 3D
   assembly view.
-- The mascot follows the pointer on desktop and appears at the tap point on
-  touch. Click a section to get a short contextual line.
+- Use the sun/moon toggle in the header (or the dossier header) to switch
+  between the light and dark technical themes. The choice is saved in
+  `localStorage`; the system preference is used on a first visit.
 - `Download Resume` serves the supplied PDF from `public/`.
-- `Esc` closes the dossier.
+- `Esc` closes the dossier; the background remains scroll-locked while it is
+  open.
+
+## Profile photograph
+
+Replace `public/profile/profile-photo.jpg` with the final portrait using the
+same filename. The dossier uses a 4:5 technical frame with `object-fit: cover`.
+If the image is missing, a neutral HKK placeholder is shown instead of a broken
+image.
 
 ## Assets
 
 - `public/Hari_Krishna_Kumar_Resume.pdf` — supplied resume, served unchanged.
-- `public/mascot/*.png` — five supplied mascot states.
+- `public/profile/profile-photo.jpg` — supplied portrait.
+- `public/favicon.svg` — HKK jellyfish mark.

@@ -11,7 +11,7 @@ export const RESUME = {
   tagline: 'FULL-STACK DEVELOPER / AI ENTHUSIAST / TECHNICAL EDUCATOR',
   organisation: 'YAJURVEDH',
   classification: 'PERSONAL DEVELOPER PORTFOLIO',
-  availability: 'Open to opportunities',
+  availability: 'Open to Opportunities',
 
   about:
     'Full-Stack Developer, AI Enthusiast and Technical Educator focused on software engineering, AI agents, computer vision and workflow automation.',
@@ -115,23 +115,6 @@ export const RESUME = {
     phoneLabel: 'Click to Call Me',
     githubLabel: 'Click Here',
     linkedinLabel: 'Click Here',
-  },
-
-  messages: {
-    about:
-      "Hey! I'm Hari's digital guide. Let me introduce you to his professional background.",
-    skills:
-      "Let's explore Hari's technical toolkit, including Python, full-stack development, AI and automation.",
-    experience:
-      'Hari is the CTO at Yajurvedh and also works as a Guest Lecturer across multiple colleges in Bengaluru.',
-    education:
-      'Hari holds a Bachelor of Computer Applications degree with a CGPA of 8.06.',
-    projects:
-      "Here are three of Hari's project areas, including computer vision, educational software and inventory management.",
-    contact:
-      'Want to connect with Hari? You can reach him through email, phone, GitHub or LinkedIn.',
-    generic:
-      "Exploring Hari's portfolio? Click on a section and I'll show you what's inside.",
   },
 };
 

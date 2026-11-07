@@ -21,6 +21,7 @@ let scroller = null;
 let closeBtn = null;
 let lastFocus = null;
 let spyFrame = 0;
+let spyHold = 0;
 let off = false;
 
 const esc = (s) =>
@@ -29,14 +30,14 @@ const esc = (s) =>
 const head = (s) => `
   <div class="dsec-head">
     <span class="dsec-no">${s.no}</span>
-    <h2>${esc(s.title)}</h2>
+    <h2 id="h-${s.id}">${esc(s.title)}</h2>
     <span class="dsec-tag">${s.id.toUpperCase()}</span>
   </div>`;
 
 function navMarkup() {
   return SECTIONS.map(
     (s) =>
-      `<button type="button" class="dnav" data-section="${s.id}" data-assistant="${s.id}" aria-controls="sec-${s.id}">${esc(
+      `<button type="button" class="dnav" data-section="${s.id}" aria-controls="sec-${s.id}">${esc(
         s.label
       )}</button>`
   ).join('');
@@ -45,31 +46,55 @@ function navMarkup() {
 function about() {
   const r = RESUME;
   return `
-    <section class="dsec" id="sec-about" data-assistant="about" aria-labelledby="h-about">
+    <section class="dsec" id="sec-about" aria-labelledby="h-about">
       ${head(SECTIONS[0])}
       <div class="dsec-body about-grid">
         <div class="about-main">
+          <div class="about-eyebrow"><span class="dot"></span>${esc(r.availability)}</div>
           <div class="about-name">${esc(r.name)}</div>
           <div class="about-role">${esc(r.designation)}</div>
           <p class="about-copy">${esc(r.about)}</p>
           <div class="about-actions">
             <a class="btn-solid" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME</a>
-            <button type="button" class="btn-line" data-section="contact" data-assistant="contact">GET IN TOUCH</button>
+            <button type="button" class="btn-line" data-section="contact">GET IN TOUCH</button>
           </div>
+          <dl class="about-facts">
+            <div><dt>ORGANISATION</dt><dd>${esc(r.organisation)}</dd></div>
+            <div><dt>AVAILABILITY</dt><dd><span class="dot"></span>${esc(r.availability)}</dd></div>
+            <div><dt>EDUCATION</dt><dd>${esc(r.education.short)} · CGPA ${esc(r.education.cgpa)}</dd></div>
+            <div><dt>CLASSIFICATION</dt><dd>${esc(r.classification)}</dd></div>
+          </dl>
         </div>
-        <dl class="about-facts">
-          <div><dt>ORGANISATION</dt><dd>${esc(r.organisation)}</dd></div>
-          <div><dt>AVAILABILITY</dt><dd><span class="dot"></span>${esc(r.availability)}</dd></div>
-          <div><dt>EDUCATION</dt><dd>${esc(r.education.short)} · CGPA ${esc(r.education.cgpa)}</dd></div>
-          <div><dt>CLASSIFICATION</dt><dd>${esc(r.classification)}</dd></div>
-        </dl>
+        <figure class="profile-card" data-profile>
+          <div class="profile-frame">
+            <div class="profile-placeholder" aria-hidden="true">
+              <span class="profile-mark">HKK</span>
+              <span class="profile-ph-label">PROFILE PHOTO</span>
+              <small>ADD PUBLIC/PROFILE/PROFILE-PHOTO.JPG</small>
+            </div>
+            <img
+              class="profile-photo"
+              src="/profile/profile-photo.jpg"
+              alt="Hari Krishna Kumar"
+              width="698"
+              height="915"
+              loading="eager"
+              decoding="async"
+            />
+            <span class="profile-scan" aria-hidden="true"></span>
+          </div>
+          <figcaption class="profile-caption">
+            <span>OPERATOR / HARI KRISHNA KUMAR</span>
+            <span>PROFILE 01</span>
+          </figcaption>
+        </figure>
       </div>
     </section>`;
 }
 
 function skills() {
   return `
-    <section class="dsec" id="sec-skills" data-assistant="skills" aria-labelledby="h-skills">
+    <section class="dsec" id="sec-skills" aria-labelledby="h-skills">
       ${head(SECTIONS[1])}
       <div class="dsec-body skill-grid">
         ${RESUME.skillGroups
@@ -92,13 +117,13 @@ function skills() {
 
 function experience() {
   return `
-    <section class="dsec" id="sec-experience" data-assistant="experience" aria-labelledby="h-experience">
+    <section class="dsec" id="sec-experience" aria-labelledby="h-experience">
       ${head(SECTIONS[2])}
       <div class="dsec-body role-list">
         ${RESUME.experience
           .map(
             (r, i) => `
-          <article class="role" data-assistant="experience">
+          <article class="role">
             <div class="role-side">
               <span class="role-no">0${i + 1}</span>
               <span class="role-code">${esc(r.code)}</span>
@@ -119,7 +144,7 @@ function experience() {
 function education() {
   const e = RESUME.education;
   return `
-    <section class="dsec" id="sec-education" data-assistant="education" aria-labelledby="h-education">
+    <section class="dsec" id="sec-education" aria-labelledby="h-education">
       ${head(SECTIONS[3])}
       <div class="dsec-body edu-grid">
         <div class="edu-main">
@@ -138,13 +163,13 @@ function education() {
 
 function projects() {
   return `
-    <section class="dsec" id="sec-projects" data-assistant="projects" aria-labelledby="h-projects">
+    <section class="dsec" id="sec-projects" aria-labelledby="h-projects">
       ${head(SECTIONS[4])}
       <div class="dsec-body project-grid">
         ${RESUME.projects
           .map(
             (p) => `
-          <article class="project" id="project-${p.id}" data-assistant="projects">
+          <article class="project" id="project-${p.id}">
             <div class="project-art">${PROJECT_ART[p.id] || ''}</div>
             <div class="project-meta"><span>${esc(p.code)}</span><span>SYSTEM</span></div>
             <h3>${esc(p.title)}</h3>
@@ -159,25 +184,25 @@ function projects() {
 function contact() {
   const c = RESUME.contact;
   return `
-    <section class="dsec" id="sec-contact" data-assistant="contact" aria-labelledby="h-contact">
+    <section class="dsec" id="sec-contact" aria-labelledby="h-contact">
       ${head(SECTIONS[5])}
       <div class="dsec-body contact-grid">
-        <a class="contact-card" data-assistant="contact" href="mailto:${esc(c.email)}">
+        <a class="contact-card" href="mailto:${esc(c.email)}">
           <span class="contact-k">EMAIL</span>
           <span class="contact-v">${esc(c.email)}</span>
           <span class="contact-l">${esc(c.emailLabel)} ↗</span>
         </a>
-        <a class="contact-card" data-assistant="contact" href="tel:${esc(c.phoneHref)}">
+        <a class="contact-card" href="tel:${esc(c.phoneHref)}">
           <span class="contact-k">PHONE</span>
           <span class="contact-v">${esc(c.phone)}</span>
           <span class="contact-l">${esc(c.phoneLabel)} ↗</span>
         </a>
-        <a class="contact-card" data-assistant="contact" href="${esc(c.github)}" target="_blank" rel="noopener noreferrer">
+        <a class="contact-card" href="${esc(c.github)}" target="_blank" rel="noopener noreferrer">
           <span class="contact-k">GITHUB</span>
           <span class="contact-v">HariKrishnaKumar</span>
           <span class="contact-l">${esc(c.githubLabel)} ↗</span>
         </a>
-        <a class="contact-card" data-assistant="contact" href="${esc(c.linkedin)}" target="_blank" rel="noopener noreferrer">
+        <a class="contact-card" href="${esc(c.linkedin)}" target="_blank" rel="noopener noreferrer">
           <span class="contact-k">LINKEDIN</span>
           <span class="contact-v">Hari Krishna Kumar</span>
           <span class="contact-l">${esc(c.linkedinLabel)} ↗</span>
@@ -187,11 +212,21 @@ function contact() {
     </section>`;
 }
 
+function wireProfileImage() {
+  const img = scroller.querySelector('.profile-photo');
+  if (!img) return;
+  const frame = img.closest('.profile-frame');
+  const missing = () => frame && frame.classList.add('is-missing');
+  img.addEventListener('error', missing, { once: true });
+  if (img.complete && img.naturalWidth === 0) missing();
+}
+
 function render() {
   scroller.innerHTML = [about(), skills(), experience(), education(), projects(), contact()].join('');
   document.querySelectorAll('#dossierNav, #nav').forEach((host) => {
     host.innerHTML = navMarkup();
   });
+  wireProfileImage();
 }
 
 function sectionEl(id) {
@@ -206,6 +241,10 @@ function scrollToSection(id, projectId) {
   const target = projectId ? document.getElementById('project-' + projectId) : sectionEl(id);
   if (!target || !scroller) return;
   const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 16;
+  // Keep the clicked section highlighted while the smooth scroll travels past
+  // the sections in between; the scroll-spy takes over again once it settles.
+  spyHold = Date.now() + 1200;
+  setActive(id);
   scroller.scrollTo({ top: Math.max(0, top), behavior: smooth() });
 }
 
@@ -213,13 +252,13 @@ function setActive(id) {
   document.querySelectorAll('.dnav').forEach((el) => {
     const on = el.getAttribute('data-section') === id;
     el.classList.toggle('is-active', on);
-    if (on) el.setAttribute('aria-current', 'true');
+    if (on) el.setAttribute('aria-current', 'page');
     else el.removeAttribute('aria-current');
   });
 }
 
 function spy() {
-  if (!off) return;
+  if (!off || Date.now() < spyHold) return;
   const ref = scroller.getBoundingClientRect().top + 120;
   let current = SECTIONS[0].id;
   for (const s of SECTIONS) {
@@ -244,15 +283,20 @@ export function openDossier(id = 'about', projectId) {
     dossier.classList.add('is-open');
     dossier.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('dossier-open');
+    document.body.classList.add('dossier-open');
     lastFocus = document.activeElement;
     off = true;
+    setActive(id);
     if (history.replaceState) history.replaceState(null, '', '#' + id);
-    requestAnimationFrame(() => closeBtn && closeBtn.focus({ preventScroll: true }));
-  } else if (history.replaceState) {
-    history.replaceState(null, '', '#' + id);
+    requestAnimationFrame(() => {
+      closeBtn && closeBtn.focus({ preventScroll: true });
+      scrollToSection(id, projectId);
+    });
+  } else {
+    if (history.replaceState) history.replaceState(null, '', '#' + id);
+    scrollToSection(id, projectId);
+    setActive(id);
   }
-  scrollToSection(id, projectId);
-  setActive(id);
 }
 
 export function closeDossier() {
@@ -260,7 +304,9 @@ export function closeDossier() {
   dossier.classList.remove('is-open');
   dossier.setAttribute('aria-hidden', 'true');
   document.documentElement.classList.remove('dossier-open');
+  document.body.classList.remove('dossier-open');
   off = false;
+  spyHold = 0;
   if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
   if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
 }
