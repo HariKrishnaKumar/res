@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Medusa JF-4 — Field Simulator</title>
-    <meta name="description" content="A robotic jellyfish you can take apart piece by piece, built live in three.js." />
-    <meta property="og:title" content="Medusa JF-4 — Field Simulator" />
-    <meta property="og:description" content="A robotic jellyfish you can take apart piece by piece, built live in three.js." />
-    <meta property="og:type" content="website" />
+    <title>Hari Krishna Kumar | Developer Portfolio</title>
+    <meta name="description" content="Interactive developer portfolio of Hari Krishna Kumar — Full-Stack Developer, AI Enthusiast and Technical Educator." />
+    <meta property="og:title" content="Hari Krishna Kumar | Developer Portfolio" />
+    <meta property="og:description" content="Interactive developer portfolio of Hari Krishna Kumar — Full-Stack Developer, AI Enthusiast and Technical Educator." />
+    <meta property="og:type" content="profile" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/mascot/cursor-purple.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -44,14 +45,14 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 .head h1{font:700 2.8rem/1 Inter,sans-serif;letter-spacing:-.01em;margin:.5rem 0 .6rem;color:var(--ink)}
 .head h1 em{font-style:normal;color:var(--coral);font-weight:600;margin-left:.3rem}
 .head .s{font-size:.82rem;letter-spacing:.18em;color:var(--mid)}
-.load{position:absolute;left:56rem;top:1.7rem;width:27rem}
+.load{position:absolute;left:56rem;top:1.7rem;width:22rem}
 .load .row{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.14em;color:var(--mid)}
 .load .row b{color:var(--ink);font-weight:600}
 #loadbar{display:flex;gap:.16rem;height:1.5rem;margin:.45rem 0 .4rem}
 #loadbar i{flex:1;background:var(--line)}
 .load .row.m{font-size:.6rem;color:var(--faint)}
-.meta{position:absolute;right:5rem;top:1.7rem;display:flex;gap:2.8rem}
-.meta div{font-size:.72rem;letter-spacing:.14em;color:var(--mid);border-left:1px solid var(--line);padding-left:1rem;min-width:7rem}
+.meta{position:absolute;right:5rem;top:1.7rem;display:flex;gap:1.6rem}
+.meta div{font-size:.72rem;letter-spacing:.14em;color:var(--mid);border-left:1px solid var(--line);padding-left:.8rem;min-width:7rem}
 .meta b{display:block;margin-top:.75rem;font-size:.95rem;font-weight:500;color:var(--ink);letter-spacing:.06em;white-space:nowrap}
 .dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:var(--teal);margin-right:.5rem;vertical-align:.1rem}
 .dot.hot{background:var(--coral)}
@@ -70,8 +71,8 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 #cArm{top:40.5rem;width:23rem;height:18.9rem}
 #cDep{top:8.7rem;width:23rem;height:15.5rem}
 #cAsm{top:25.3rem;width:23rem;height:8.9rem}
-#cDis{top:35.2rem;width:23rem;height:8.6rem}
-#cSub{top:44.8rem;width:23rem;height:15.6rem}
+#cDis{top:35.2rem;width:23rem;height:10.2rem}
+#cSub{top:46.4rem;width:23rem;height:14rem}
 .jr{display:flex;justify-content:space-between;align-items:flex-end;margin-top:.5rem}
 #chart{display:block;width:100%;height:7.2rem;margin-top:.6rem}
 .foot{display:flex;justify-content:space-between;font-size:.66rem;letter-spacing:.12em;color:var(--mid);margin-top:.5rem}
@@ -127,7 +128,216 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
   .head{left:10.4rem;top:1rem}.head h1{font-size:2.2rem;margin:.3rem 0}.head .k{display:none}.head .s{font-size:.62rem;letter-spacing:.06em}
   #cAsm{left:1.6rem;right:1.6rem;width:auto;top:auto;bottom:9.8rem;height:auto;padding:.7rem .8rem}#cAsm .ct{display:none}#cAsm .btns{margin-top:0}
   #mode{left:1.6rem;top:7.4rem}#mode .m{font-size:2rem}
-  .logcard{left:1.6rem;right:1.6rem;top:auto;bottom:1.4rem;height:7.6rem}
+  .logcard{left:1.6rem;right:1.6rem;top:auto;bottom:4.9rem;height:7.2rem}
+}
+
+/* ============================================================
+   PORTFOLIO LAYER — added on top of the original simulator
+   ============================================================ */
+
+/* footer download action */
+.bot-dl{color:var(--coral);font-weight:600;text-decoration:none;letter-spacing:.2em;pointer-events:auto;border-bottom:1px solid rgba(255,90,60,.4);padding-bottom:.1rem;white-space:nowrap}
+.bot-dl:hover{border-bottom-color:var(--coral);color:var(--ink)}
+.bot-dl:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* whole panels open the dossier; keep hit affordance subtle */
+.head[data-section],#mode[data-section]{pointer-events:auto}
+.card[data-section]{transition:border-color .2s,box-shadow .2s}
+.card[data-section]:hover{border-color:rgba(255,90,60,.32);box-shadow:0 .4rem 2.2rem rgba(40,110,110,.13)}
+
+/* navigation chips inside the DISPLAY panel */
+#cDis .btns{gap:.38rem;margin-top:.5rem}
+#cDis .btns:first-of-type{margin-top:.65rem}
+#cDis .dnav{font-size:.6rem;padding:.32rem .5rem}
+#dis button{font-size:.6rem;padding:.28rem .48rem;opacity:.9}
+#cDis .btns + .btns{border-top:1px solid var(--line);padding-top:.55rem;margin-top:.55rem}
+.btns button.project-btn{border-color:rgba(255,90,60,.42)}
+.btns button.project-btn:hover{background:rgba(255,90,60,.08)}
+
+/* stack list — replaces the fake proficiency bars */
+.armrow{grid-template-columns:1fr auto;margin-top:.36rem;height:auto;min-height:1.2rem}
+.armrow span{letter-spacing:.04em}
+.armrow s{font-size:.58rem;letter-spacing:.08em;color:var(--mid);text-decoration:none}
+.armrow.on s{color:var(--coral)}
+.armrow.on span{color:var(--coral)}
+#armlive{color:var(--teal)}
+
+/* ---------- dossier overlay ---------- */
+.dossier{position:fixed;inset:0;z-index:400;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .26s ease,visibility .26s;user-select:text}
+.dossier.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.dossier-veil{position:absolute;inset:0;background:rgba(14,58,61,.14);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.dossier-shell{position:absolute;right:0;top:0;bottom:0;width:min(86rem,72vw);display:flex;flex-direction:column;background:linear-gradient(180deg,#fafefd,#f0faf9);border-left:1px solid var(--line);box-shadow:-2.5rem 0 6rem rgba(20,80,80,.13);transform:translateX(2.4rem);transition:transform .34s cubic-bezier(.2,.8,.2,1)}
+.dossier.is-open .dossier-shell{transform:none}
+.dossier-top{flex:none;display:flex;align-items:center;gap:1.2rem;padding:1rem 1.8rem;border-bottom:1px solid var(--line);background:rgba(255,255,255,.72);backdrop-filter:blur(10px)}
+.dossier-id{font-size:.6rem;letter-spacing:.18em;color:var(--faint);white-space:nowrap}
+.dossier-id span{display:block;margin-top:.32rem;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--ink)}
+.dossier-nav{display:flex;flex-wrap:wrap;gap:.35rem;margin-left:auto}
+.dnav{font:500 .62rem 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.6);border:1px solid var(--line);color:var(--mid);padding:.4rem .58rem;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.dnav:hover{border-color:var(--coral);color:var(--ink)}
+.dnav.is-active{background:var(--coral);border-color:var(--coral);color:#fff}
+.dossier-close{flex:none;width:2.1rem;height:2.1rem;border:1px solid var(--line);background:#fff;color:var(--ink);font:400 1.15rem/1 Inter,sans-serif;cursor:pointer;display:grid;place-items:center}
+.dossier-close:hover{border-color:var(--coral);color:var(--coral)}
+.dossier-dl{flex:none;display:inline-flex;align-items:center;font:600 .56rem/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:var(--coral);border:1px solid rgba(255,90,60,.45);padding:.6rem .55rem;text-decoration:none;white-space:nowrap}
+.dossier-dl:hover{background:var(--coral);border-color:var(--coral);color:#fff}
+.dossier-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:0 2.2rem 3.5rem;scrollbar-width:thin;scrollbar-color:var(--faint) transparent}
+.dossier-scroll::-webkit-scrollbar{width:8px}
+.dossier-scroll::-webkit-scrollbar-thumb{background:var(--faint)}
+.dossier-scroll::-webkit-scrollbar-track{background:transparent}
+
+.dsec{padding:2.4rem 0 1.9rem;border-bottom:1px solid var(--line)}
+.dsec:last-child{border-bottom:0}
+#sec-contact{min-height:calc(100vh - 4rem)}
+.dsec-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.35rem}
+.dsec-no{font-size:.62rem;letter-spacing:.18em;color:var(--coral);font-weight:600}
+.dsec-head h2{font:700 1.5rem/1.1 Inter,sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.dsec-tag{margin-left:auto;font-size:.55rem;letter-spacing:.16em;color:var(--faint)}
+.dsec-body{display:block}
+.dsec-foot{margin-top:1.35rem;padding-top:.65rem;border-top:1px dashed var(--line);font-size:.55rem;letter-spacing:.14em;color:var(--faint)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.4fr .85fr;gap:2.2rem;align-items:start}
+.about-name{font:700 2.1rem/1.05 Inter,sans-serif;color:var(--ink);letter-spacing:-.02em}
+.about-role{font-size:.66rem;letter-spacing:.15em;color:var(--coral);margin-top:.55rem;font-weight:600}
+.about-copy{font-size:.84rem;line-height:1.75;color:var(--ink);margin-top:1rem;max-width:40rem}
+.about-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.3rem}
+.btn-solid,.btn-line{display:inline-flex;align-items:center;justify-content:center;font:600 .64rem 'JetBrains Mono',monospace;letter-spacing:.14em;text-decoration:none;padding:.68rem .95rem;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.btn-solid{background:var(--coral);border:1px solid var(--coral);color:#fff}
+.btn-solid:hover{background:transparent;color:var(--coral)}
+.btn-line{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--coral);color:var(--coral)}
+.btn-solid:focus-visible,.btn-line:focus-visible,.dnav:focus-visible,.dossier-close:focus-visible,.dossier-dl:focus-visible,.contact-card:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.about-facts{display:grid;gap:.85rem;border-left:1px solid var(--line);padding-left:1.3rem;margin-top:.2rem}
+.about-facts dt{font-size:.54rem;letter-spacing:.16em;color:var(--faint)}
+.about-facts dd{font-size:.76rem;margin-top:.22rem;color:var(--ink);font-weight:500;letter-spacing:.03em}
+.about-facts dd .dot{margin-right:.4rem}
+
+/* skills */
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.skill-card{border:1px solid var(--line);background:rgba(255,255,255,.62);padding:.85rem .95rem}
+.skill-top{display:flex;align-items:center;gap:.45rem}
+.skill-no{font-size:.55rem;color:var(--coral);font-weight:600}
+.skill-top h3{font:600 .74rem/1.2 Inter,sans-serif;letter-spacing:.07em;color:var(--ink)}
+.skill-code{margin-left:auto;font-size:.5rem;letter-spacing:.08em;color:var(--faint);border:1px solid var(--line);padding:.14rem .3rem;white-space:nowrap}
+.chip-row{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.65rem}
+.chip{font-size:.6rem;letter-spacing:.03em;padding:.22rem .46rem;background:rgba(70,201,191,.11);border:1px solid rgba(15,157,138,.24);color:var(--ink)}
+
+/* experience */
+.role-list{display:grid;gap:.85rem}
+.role{display:grid;grid-template-columns:4.9rem 1fr;border:1px solid var(--line);background:rgba(255,255,255,.64)}
+.role-side{border-right:1px solid var(--line);padding:.95rem .65rem;display:flex;flex-direction:column;gap:.4rem}
+.role-no{font-size:.58rem;color:var(--coral);font-weight:600}
+.role-code{font-size:.52rem;letter-spacing:.1em;color:var(--faint);word-break:break-word}
+.role-main{padding:.95rem 1.15rem}
+.role-main h3{font:600 1rem/1.25 Inter,sans-serif;color:var(--ink)}
+.role-org{font-size:.62rem;letter-spacing:.13em;color:var(--coral);margin-top:.35rem;font-weight:600}
+.role-main ul{margin:.75rem 0 0;padding:0;list-style:none;display:grid;gap:.35rem}
+.role-main li{font-size:.72rem;line-height:1.5;color:var(--mid);padding-left:.95rem;position:relative}
+.role-main li:before{content:"";position:absolute;left:0;top:.58em;width:.38rem;height:1px;background:var(--coral)}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:.8rem}
+.edu-main,.edu-gpa{border:1px solid var(--line);background:rgba(255,255,255,.64);padding:1.3rem 1.4rem}
+.edu-label{font-size:.55rem;letter-spacing:.16em;color:var(--faint)}
+.edu-main h3{font:600 1.15rem/1.35 Inter,sans-serif;color:var(--ink);margin:.5rem 0 .7rem;max-width:26rem}
+.edu-status{font-size:.62rem;letter-spacing:.1em;color:var(--mid);font-weight:500}
+.edu-num{font:700 2.45rem/1 Inter,sans-serif;color:var(--ink);margin-top:.55rem;letter-spacing:-.02em}
+.edu-num small{font:500 .8rem Inter,sans-serif;color:var(--mid);margin-left:.3rem;letter-spacing:0}
+
+/* projects */
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.project{border:1px solid var(--line);background:rgba(255,255,255,.64);padding:.75rem;display:flex;flex-direction:column}
+.project-art{background:linear-gradient(180deg,#f8fdfc,#eaf7f5);border:1px solid var(--line);overflow:hidden}
+.ill{display:block;width:100%;height:auto}
+.project-meta{display:flex;justify-content:space-between;gap:.4rem;font-size:.51rem;letter-spacing:.1em;color:var(--faint);margin-top:.65rem}
+.project h3{font:600 .74rem/1.4 Inter,sans-serif;color:var(--ink);margin-top:.4rem}
+.ill-grid line{stroke:#dcefed;stroke-width:.6}
+.ill-line{fill:none;stroke:#0e3a3d;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.ill-faint{fill:none!important;stroke:#9dbcbc!important;stroke-width:.8!important}
+.ill-faint2{fill:none!important;stroke:#cfe5e4!important;stroke-width:.8!important}
+.ill-hot{fill:none!important;stroke:#ff5a3c!important;stroke-width:1.35!important;stroke-linecap:round;stroke-linejoin:round}
+.ill-dot circle{fill:#0e3a3d}
+.ill-wire{fill:none!important;stroke:#0f9d8a!important;stroke-width:1!important;stroke-linecap:round}
+.ill-scan{fill:none;stroke:#ff5a3c;stroke-width:1;stroke-dasharray:3 4}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+.contact-card{display:flex;flex-direction:column;gap:.3rem;border:1px solid var(--line);background:rgba(255,255,255,.64);padding:.95rem 1.05rem;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.contact-card:hover{border-color:var(--coral);transform:translateY(-2px)}
+.contact-k{font-size:.54rem;letter-spacing:.16em;color:var(--faint)}
+.contact-v{font-size:.78rem;font-weight:600;letter-spacing:.02em;overflow-wrap:anywhere}
+.contact-l{font-size:.58rem;letter-spacing:.09em;color:var(--coral);margin-top:.1rem}
+
+/* ---------- mascot ---------- */
+.mascot{position:fixed;left:0;top:0;width:38px;height:38px;z-index:9000;pointer-events:none;opacity:0;transition:opacity .18s,width .16s,height .16s;will-change:transform;filter:drop-shadow(0 0 1.5px rgba(14,58,61,.5)) drop-shadow(0 .5rem 1rem rgba(30,16,70,.28))}
+.mascot.is-on{opacity:1}
+.mascot img{display:block;width:100%;height:100%;object-fit:contain}
+.mascot.is-pop{width:62px;height:62px}
+.mascot.is-pop img{animation:mascotPop .44s cubic-bezier(.2,1.4,.4,1)}
+@keyframes mascotPop{0%{transform:scale(.72) rotate(-7deg)}55%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1)}}
+.mascot-bubble{position:fixed;left:0;top:0;z-index:9001;max-width:min(20rem,74vw);padding:.7rem .85rem .75rem;background:rgba(255,255,255,.975);border:1px solid var(--line);border-left:.26rem solid var(--coral);box-shadow:0 1.2rem 3rem rgba(30,80,80,.17);pointer-events:none;opacity:0;visibility:hidden;transition:opacity .16s,visibility .16s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mascot-bubble.is-open{opacity:1;visibility:visible}
+.mascot-bubble .k{display:block;font-size:.5rem;letter-spacing:.2em;color:var(--faint);margin-bottom:.32rem}
+.mascot-bubble p{font-size:.68rem;line-height:1.6;color:var(--ink);font-weight:500}
+@media (hover:hover) and (pointer:fine){
+  html.mascot-on,html.mascot-on body,html.mascot-on body *{cursor:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .mascot,.mascot-bubble,.dossier,.dossier-shell,.contact-card{transition:none}
+  .mascot.is-pop img{animation:none}
+  .dossier-scroll{scroll-behavior:auto}
+}
+
+/* ---------- mobile action bar + panel sheet ---------- */
+.mbar{display:none}
+@media (max-width:820px){
+  .dl{display:none}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;gap:.45rem;padding:.5rem .7rem;background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .mbar button,.mbar a{flex:1;text-align:center;font:500 .6rem 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.7);border:1px solid var(--line);padding:.58rem .3rem;cursor:pointer}
+  .mbar button:active,.mbar a:active{border-color:var(--coral);color:var(--coral)}
+  #cAsm{bottom:13rem}
+  #mode{top:7.4rem}
+  body.panels-open .hud{position:fixed;inset:0;z-index:110;overflow-y:auto;overscroll-behavior:contain;pointer-events:auto;padding:1.7rem 1.2rem 6rem;background:linear-gradient(180deg,#fafefd 0%,var(--bg) 60%,var(--bg2) 100%)}
+  body.panels-open .hud .logo,body.panels-open .hud .head,body.panels-open .hud .load,body.panels-open .hud .meta,body.panels-open .hud .plus,body.panels-open .hud .rulelab,body.panels-open .hud .bot{opacity:0;pointer-events:none}
+  body.panels-open .hud #cJet,body.panels-open .hud #cPow,body.panels-open .hud #cArm,body.panels-open .hud #cDep,body.panels-open .hud #cAsm,body.panels-open .hud #cDis,body.panels-open .hud #cSub,body.panels-open .hud #mode,body.panels-open .hud .logcard{position:static;inset:auto;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto;margin:0 0 .9rem;display:block;transform:none}
+  body.panels-open .hud .card{padding:1rem}
+  body.panels-open .hud #cAsm{background:var(--card);border:1px solid rgba(255,255,255,.8);box-shadow:0 .4rem 2rem rgba(40,110,110,.07);padding:1rem}
+  body.panels-open .hud #cAsm .ct{display:flex}
+  body.panels-open .hud #cAsm .btns{margin-top:.75rem}
+  body.panels-open .hud #mode{padding:.4rem 0}
+  body.panels-open .hud .logcard{padding:.85rem}
+  body.panels-open .hud .bot{display:none}
+  .dossier-shell{width:100%}
+  .dossier-top{padding:.8rem .9rem;gap:.5rem}
+  .dossier-id{display:none}
+  .dossier-nav{flex-wrap:nowrap;overflow-x:auto;margin-left:0;padding-bottom:.15rem;scrollbar-width:none}
+  .dossier-nav::-webkit-scrollbar{display:none}
+  .dnav{white-space:nowrap;flex:0 0 auto;font-size:.72rem;padding:.45rem .55rem}
+  .dossier-scroll{padding:0 1rem 5rem}
+  .dsec{padding:1.9rem 0 1.5rem}
+  .dsec-head h2{font-size:1.22rem}
+  .about-grid,.edu-grid{grid-template-columns:1fr;gap:1rem}
+  .about-name{font-size:1.65rem}
+  .about-copy{font-size:.9rem}
+  .about-facts{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:1rem;grid-template-columns:1fr 1fr}
+  .skill-grid,.project-grid,.contact-grid{grid-template-columns:1fr}
+  .skill-top h3{font-size:.8rem}
+  .chip{font-size:.66rem}
+  .role{grid-template-columns:3.4rem 1fr}
+  .role-side{padding:.8rem .5rem}
+  .role-main{padding:.85rem .9rem}
+  .role-main h3{font-size:1.05rem}
+  .role-main li{font-size:.78rem}
+  .project h3{font-size:.82rem}
+  .contact-v{font-size:.85rem}
+  .dsec-foot{font-size:.5rem}
+}
+@media (max-width:420px){
+  .about-facts{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:1fr}
+}
+@media (min-width:821px) and (max-height:760px){
+  .dossier-scroll{padding-bottom:2rem}
+  .dsec{padding:1.8rem 0 1.5rem}
 }
     </style>
   </head>
@@ -136,49 +346,76 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
       <canvas id="gl"></canvas>
       <svg id="leaders"></svg>
       <div id="tags"></div>
-      <div class="hud">
-        <div class="logo"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M7 20C7 11 13 6 20 6s13 5 13 14c-3 2-6 1-8 0-3 1.500-7 1.500-10 0-2 1-5 2-8 0Z"/><path d="M12 23c0 4-3 5-2 9M17 24c0 4-2 7 0 11M23 24c0 4 2 7 0 11M28 23c0 4 3 5 2 9"/></svg>JF-4</div>
-        <div class="head"><div class="k">ROBOTIC FIELD-SIMULATOR / OCEANIC EXPLORATION PLATFORM</div><h1>Medusa JF-4<em>/</em></h1><div class="s">SOFT-ROBOTIC TENTACLE DRONE / FLUID PROPULSION</div></div>
-        <div class="load"><div class="row"><span>JET LOAD</span><b id="loadv">0%</b></div><div id="loadbar"></div><div class="row m"><span>IDLE</span><span>THRUST</span><span>BURST</span></div></div>
-        <div class="meta"><div>UNIT ID<b>JF4-0731</b></div><div>RUNTIME<b id="rt">00:00:00</b></div><div>STATUS<b id="st"><span class="dot"></span>JETTING</b></div><div>OPERATOR<b>TANK 2 · M.S.</b></div></div>
+      <div class="hud" id="hudPanels">
+        <div class="logo"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M7 20C7 11 13 6 20 6s13 5 13 14c-3 2-6 1-8 0-3 1.500-7 1.500-10 0-2 1-5 2-8 0Z"/><path d="M12 23c0 4-3 5-2 9M17 24c0 4-2 7 0 11M23 24c0 4 2 7 0 11M28 23c0 4 3 5 2 9"/></svg>HKK</div>
+        <div class="head" data-assistant="about" data-section="about"><div class="k">FULL-STACK DEVELOPER / AI ENTHUSIAST / TECHNICAL EDUCATOR</div><h1>Hari Krishna Kumar<em>/</em></h1><div class="s">YAJURVEDH / PERSONAL DEVELOPER PORTFOLIO</div></div>
+        <div class="load"><div class="row"><span>TECHNICAL EXPERTISE</span><b id="loadv">09 MODULES</b></div><div id="loadbar"></div><div class="row m"><span>LANGUAGES</span><span>FRAMEWORKS</span><span>AI · DATA</span></div></div>
+        <div class="meta"><div>PROFILE<b>FULL-STACK DEV</b></div><div>EXPERIENCE<b id="rt">02 ROLES</b></div><div>STATUS<b id="st"><span class="dot"></span>OPEN TO WORK</b></div><div>OPERATOR<b>HARI KRISHNA KUMAR</b></div></div>
         <div class="plus" id="plus"></div>
-        <div class="rulelab" style="left:27.6rem">MODEL JF-4 · REV B</div>
-        <div class="rulelab" style="right:27.6rem" id="iso">ISOLATE · HERO</div>
+        <div class="rulelab" style="left:27.6rem">PORTFOLIO · REV B</div>
+        <div class="rulelab" style="right:27.6rem" id="iso">VIEW · PROFILE</div>
 
-        <section class="card l" id="cJet"><div class="ct"><span>JET</span><small>01</small></div>
-          <div class="jr"><div class="big"><span id="kpa">0</span><small>KPA</small></div><div class="big" style="font-size:1.9rem"><span id="thr">0</span> N</div></div>
-          <div class="foot" style="margin-top:.2rem"><span>BELL PRESSURE</span><span>THRUST</span></div>
+        <section class="card l" id="cJet" data-assistant="skills" data-section="skills"><div class="ct"><span>TECHNICAL EXPERTISE</span><small>01</small></div>
+          <div class="jr"><div class="big"><span id="kpa">09</span><small>MODULES</small></div><div class="big" style="font-size:1.9rem"><span id="thr">25</span> TECHS</div></div>
+          <div class="foot" style="margin-top:.2rem"><span>SKILL MODULES</span><span>TECHNOLOGIES</span></div>
           <canvas id="chart"></canvas>
-          <div class="foot"><span>PULSE <b id="pul">0.0 HZ</b></span><span id="sipst">SIPHON IDLE</span></div></section>
-        <section class="card l" id="cPow"><div class="ct"><span>POWER</span><small>02</small></div>
-          <div class="jr" style="align-items:center"><div class="big"><span id="bat">76</span><small>%</small></div><div id="batt"></div></div>
-          <div class="tiny">BATTERY</div>
-          <div class="tri tiny"><div>DRAW<b id="draw">9.4 W</b></div><div>CELL<b>3.72 V</b></div><div>MOTOR<b id="mot">23 °C</b></div></div></section>
-        <section class="card l" id="cArm"><div class="ct"><span>ARM COIL</span><small>03</small></div>
-          <div class="foot" style="margin-top:.4rem;align-items:center"><span>COIL PER ARM · TIP SPIRAL</span><span class="ctag" id="armtag">TRAILING</span></div>
-          <div id="arms"></div></section>
+          <div class="foot"><span>LIVE SIGNAL <b id="pul">SIM</b></span><span id="sipst">AI · DATA · WEB</span></div></section>
+        <section class="card l" id="cPow" data-assistant="experience" data-section="experience"><div class="ct"><span>PROFESSIONAL EXPERIENCE</span><small>02</small></div>
+          <div class="jr" style="align-items:center"><div class="big"><span id="bat">02</span><small>ROLES</small></div><div id="batt"></div></div>
+          <div class="tiny">POSITIONS HELD · OPEN TO OPPORTUNITIES</div>
+          <div class="tri tiny"><div>ROLE<b>CTO</b></div><div>ORG<b>YAJURVEDH</b></div><div>ALSO<b>LECTURER</b></div></div></section>
+        <section class="card l" id="cArm" data-assistant="skills" data-section="skills"><div class="ct"><span>LANGUAGES &amp; FRAMEWORKS</span><small>03</small></div>
+          <div class="foot" style="margin-top:.4rem;align-items:center"><span>CORE STACK — 08</span><span class="ctag" id="armtag">STACK</span></div>
+          <div id="arms"></div>
+          <div class="foot" style="margin-top:.55rem;border-top:1px solid var(--line);padding-top:.5rem"><span>COIL CURL <b id="armlive">0.00</b></span><span>3D TELEMETRY</span></div></section>
 
-        <section class="card r" id="cDep"><div class="ct"><span>DEPTH</span><small>04</small></div>
+        <section class="card r" id="cDep" data-assistant="education" data-section="education"><div class="ct"><span>EDUCATION</span><small>04</small></div>
           <div class="dep"><svg id="hor" viewBox="-50 -50 100 100"><defs><clipPath id="hc"><circle r="47"/></clipPath></defs><circle r="47" fill="#f7fdfc" stroke="#cfe5e4"/><g clip-path="url(#hc)"><g id="hg"><rect x="-80" y="0" width="160" height="90" fill="#dcf0ee"/><line x1="-80" x2="80" stroke="#0e3a3d" stroke-width="1"/></g></g><path d="M-16 0h10l4 5 4-5h12" fill="none" stroke="#ff5a3c" stroke-width="1.800"/></svg>
-          <dl><dt>DEPTH</dt><dd id="dd">12.42 M</dd><dt>V/S</dt><dd id="dv">+0.00 M/S</dd><dt>PITCH</dt><dd id="dp">+0.00°</dd><dt>ROLL</dt><dd id="dr">+0.00°</dd></dl></div>
-          <div class="foot" style="border-top:1px solid var(--line);padding-top:.6rem;margin-top:.7rem"><span>HOLD <b id="hold">OFF</b></span><span>SPEED <b id="spd">0.00 M/S</b></span></div></section>
-        <section class="card r" id="cAsm"><div class="ct"><span>ASSEMBLIES</span><small>05</small></div><div class="btns" id="asm"></div></section>
-        <section class="card r" id="cDis"><div class="ct"><span>DISPLAY</span><small>06</small></div><div class="btns" id="dis"></div></section>
-        <section class="card r" id="cSub"><div class="ct"><span>SUBSYSTEMS</span><small>07</small></div><div id="subs"></div></section>
+          <dl><dt>DEGREE</dt><dd id="dd">BCA</dd><dt>CGPA</dt><dd id="dv">8.06</dd><dt>FIELD</dt><dd id="dp">COMPUTER APPS</dd><dt>STATUS</dt><dd id="dr">COMPLETE</dd></dl></div>
+          <div class="foot" style="border-top:1px solid var(--line);padding-top:.6rem;margin-top:.7rem"><span>LEVEL <b id="hold">UNDERGRAD</b></span><span>SCALE <b id="spd">10.0</b></span></div></section>
+        <section class="card r" id="cAsm" data-assistant="projects" data-section="projects"><div class="ct"><span>PROJECTS</span><small>05</small></div><div class="btns" id="asm"></div></section>
+        <section class="card r" id="cDis"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>06</small></div><div class="btns" id="nav"></div><div class="btns" id="dis"></div></section>
+        <section class="card r" id="cSub" data-assistant="experience" data-section="experience"><div class="ct"><span>PROFESSIONAL ROLES</span><small>07</small></div><div id="subs"></div></section>
 
-        <div id="mode"><div class="t">OPERATING MODE</div><div class="m" id="mm">JETTING</div><div class="t" id="ms"></div></div>
-        <section class="logcard"><div class="ct"><span>OPERATION LOG</span><small>08</small></div>
+        <div id="mode" data-assistant="about" data-section="about"><div class="t">CURRENT FOCUS</div><div class="m" id="mm">FULL-STACK</div><div class="t" id="ms">SOFTWARE · AI · EDUCATION</div></div>
+        <section class="logcard" data-assistant="experience" data-section="experience"><div class="ct"><span>CAREER JOURNEY</span><small>08</small></div>
           <div class="lg"><button id="play" aria-label="Pause"><svg viewBox="0 0 12 12"><path id="pi" d="M2 1h3v10H2zM7 1h3v10H7z"/></svg></button>
-            <div><div class="lgh"><span>DIVE</span><span id="msg"></span><span>SURFACE</span></div>
-            <div id="rail" role="slider" tabindex="0" aria-label="Timeline"><div class="b"></div><div id="fill"></div><div id="knob"></div></div>
-            <div class="sm"><span id="tc">00:00 / 00:25</span><span>8 OPERATOR ACTIONS</span></div></div></div></section>
-        <div class="bot"><span>FIELD SIMULATOR &nbsp;·&nbsp; PROCEDURAL MODEL &nbsp;·&nbsp; 8 ARMS &nbsp;·&nbsp; 1 OPTIC &nbsp;·&nbsp; 1 SIPHON</span><span>MEDUSA MARINE ROBOTICS &nbsp;·&nbsp; DEEP LAB <b>//////</b></span></div>
+            <div><div class="lgh"><span>CAREER</span><span id="msg"></span><span>PORTFOLIO</span></div>
+            <div id="rail" role="slider" tabindex="0" aria-label="Career timeline" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0"><div class="b"></div><div id="fill"></div><div id="knob"></div></div>
+            <div class="sm"><span id="tc">00:00 / 00:25</span><span>10 JOURNEY STOPS</span></div></div></div></section>
+        <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf" data-assistant="contact">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
       </div>
     </main>
+
+    <div class="dossier" id="dossier" aria-hidden="true">
+      <div class="dossier-veil" data-close></div>
+      <div class="dossier-shell" role="dialog" aria-modal="true" aria-label="Hari Krishna Kumar professional dossier">
+        <div class="dossier-top">
+          <div class="dossier-id">HKK / DOSSIER<span>DEVELOPER PROFILE</span></div>
+          <nav class="dossier-nav" id="dossierNav" aria-label="Resume sections"></nav>
+          <a class="dossier-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf" data-assistant="contact">PDF ↓</a>
+          <button type="button" class="dossier-close" data-close aria-label="Close dossier">×</button>
+        </div>
+        <div class="dossier-scroll" id="dossierScroll"></div>
+      </div>
+    </div>
+
+    <div class="mascot" id="mascot" aria-hidden="true"><img src="/mascot/cursor-purple.png" alt="" width="125" height="126" draggable="false" /></div>
+    <div class="mascot-bubble" id="mascotBubble" aria-hidden="true" role="status" aria-live="polite"><span class="k">GUIDE</span><p></p></div>
+
+    <nav class="mbar" aria-label="Mobile actions">
+      <button type="button" id="mPanels" aria-expanded="false" aria-controls="hudPanels">PANELS</button>
+      <button type="button" data-section="about" data-assistant="about">DOSSIER</button>
+      <a href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME ↓</a>
+    </nav>
+
     <script type="module">
 import * as THREE from 'three';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
+import { RESUME, TOTAL_TECH } from './src/resume-data.js';
+import { initMascot, tickMascot } from './src/mascot.js';
+import { initNavigation } from './src/nav.js';
 
 const DUR = 25, ARMS = 8, N = 28, $ = id => document.getElementById(id);
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -216,17 +453,17 @@ const sample = (k, t) => {
   return k[k.length - 1][1];
 };
 const SECT = [
-  {t:0,    m:'JETTING',     s:'PITCH +22° · 2.3 M/S', b:'HERO',   st:'JETTING',     log:'INBOUND · JET ASSIST',    iso:'HERO',   tag:'TRAILING'},
-  {t:2.6,  m:'HOLDING',     s:'STATION KEEPING',      b:'HERO',   st:'HOLDING',     log:'INBOUND · JET ASSIST',    iso:'HERO',   tag:'COILING'},
-  {t:3.3,  m:'OPTICS OPEN', s:'OPTIC · 86% APART',    b:'OPTICS', st:'OPTICS OPEN', log:'OPERATOR · ISOLATE OPTICS',iso:'OPTICS',tag:'COILING', sub:0, lab:'optic', hot:1},
-  {t:5.7,  m:'BELL OPEN',   s:'8 PETALS · 92% OPEN',  b:'BELL',   st:'BELL OPEN',   log:'OPERATOR · ISOLATE BELL',  iso:'BELL',  tag:'COILING', sub:1, lab:'bell', hot:1},
-  {t:7.5,  m:'PUMP OUT',    s:'CORE · SPINNING FREE', b:'PUMP',   st:'PUMP OUT',    log:'OPERATOR · ISOLATE PUMP',  iso:'PUMP',  tag:'COILING', sub:2, lab:'pump', hot:1},
-  {t:9.9,  m:'ARM R2 APART',s:'14 OF 28 LINKS',       b:'ARM R2', st:'ARM R2 APART',log:'OPERATOR · ISOLATE ARM R2',iso:'ARM R2',tag:'COILING', sub:3, lab:'arm', hot:1},
-  {t:12.7, m:'SIPHON OPEN', s:'6 FLAPS · 84% APART',  b:'SIPHON', st:'SIPHON OPEN', log:'OPERATOR · ISOLATE SIPHON',iso:'SIPHON',tag:'COILING', sub:4, lab:'siphon', hot:1},
-  {t:15.8, m:'TEARDOWN',    s:'TURNTABLE · 98% APART',b:null,     st:'TEARDOWN',    log:'OPERATOR · EXPLODED ON',   iso:'ALL',   tag:'DETACHED',lab:'all', hot:1, det:1, on:['LABELS','EXPLODED','TURNTABLE']},
-  {t:19.3, m:'REASSEMBLY',  s:'TURNTABLE · RETURNING',b:null,     st:'REASSEMBLY',  log:'OPERATOR · EXPLODED OFF',  iso:'ALL',   tag:'COILING', hot:1, on:['TURNTABLE']},
-  {t:21,   m:'HOLDING',     s:'STATION KEEPING',      b:'HERO',   st:'HOLDING',     log:'OPERATOR · EXPLODED OFF',  iso:'HERO',  tag:'COILING'},
-  {t:22,   m:'DEPARTING',   s:'PITCH +40° · RELEASE', b:'HERO',   st:'DEPARTING',   log:'OPERATOR · HERO · RELEASE',iso:'HERO',  tag:'TRAILING', on:['JET WAKE']},
+  {t:0,    m:'FULL-STACK',      s:'PYTHON · JAVASCRIPT · MERN',      b:'HERO',   st:'READY',    log:'PROFILE · FULL-STACK DEVELOPER',              iso:'PROFILE',  tag:'STACK'},
+  {t:2.6,  m:'AI & CV',         s:'OPENCV · DEEPFACE · MEDIAPIPE',   b:'HERO',   st:'READY',    log:'SKILLS · AI & COMPUTER VISION',                iso:'SKILLS',   tag:'AI'},
+  {t:3.3,  m:'COMPUTER VISION', s:'FACE · POSE · IMAGE PIPELINE',    b:'OPTICS', st:'FOCUSED',  log:'PROJECT · FACIAL RECOGNITION & CV',            iso:'VISION',   tag:'AI / CV', sub:0, lab:'optic', hot:1},
+  {t:5.7,  m:'BACKEND',         s:'FASTAPI · FLASK · DJANGO',        b:'BELL',   st:'BUILDING', log:'SKILLS · BACKEND & APIS',                      iso:'BACKEND',  tag:'API',     sub:1, lab:'bell', hot:1},
+  {t:7.5,  m:'DATA',            s:'MYSQL · MARIADB · PANDAS',       b:'PUMP',   st:'BUILDING', log:'SKILLS · DATABASES & DATA',                    iso:'DATA',     tag:'DATA',    sub:2, lab:'pump', hot:1},
+  {t:9.9,  m:'EXPERIENCE',      s:'CTO · YAJURVEDH',                b:'ARM R2', st:'LEADING',  log:'ROLE · CHIEF TECHNOLOGY OFFICER',              iso:'CTO',      tag:'CTO',     sub:3, lab:'arm', hot:1},
+  {t:12.7, m:'EDUCATION',       s:'BCA · CGPA 8.06',                b:'SIPHON', st:'COMPLETE', log:'EDUCATION · BACHELOR OF COMPUTER APPLICATIONS',iso:'EDUCATION',tag:'BCA',     sub:4, lab:'siphon', hot:1},
+  {t:15.8, m:'TEACHING',        s:'GUEST LECTURER · BENGALURU',     b:null,     st:'TEACHING', log:'ROLE · GUEST LECTURER',                        iso:'LECTURER', tag:'TEACH',   det:1, lab:'all', hot:1, on:['LABELS','EXPLODED','TURNTABLE']},
+  {t:19.3, m:'PROJECTS',        s:'VISION · LMS · INVENTORY',       b:null,     st:'SHIPPING', log:'PROJECTS · 03 TECHNICAL SYSTEMS',              iso:'PROJECTS', tag:'BUILD',   hot:1, on:['TURNTABLE']},
+  {t:21,   m:'CONTACT',         s:'EMAIL · PHONE · GITHUB · LINKEDIN', b:'HERO', st:'OPEN',    log:'CONTACT · OPEN TO OPPORTUNITIES',              iso:'CONTACT',  tag:'OPEN'},
+  {t:22,   m:'AVAILABLE',       s:'OPEN TO OPPORTUNITIES',          b:'HERO',   st:'OPEN',     log:'STATUS · OPEN TO OPPORTUNITIES',               iso:'STATUS',   tag:'OPEN',    on:['JET WAKE']},
 ];
 SECT[0].on = ['JET WAKE'];
 const secAt = t => { let s = SECT[0]; for (const x of SECT) if (t >= x.t) s = x; return s; };
@@ -499,17 +736,33 @@ for (let i = 0; i < MAXT; i++) {
 $('plus').innerHTML = '<span>+</span>'.repeat(28);
 for (let i = 0; i < 50; i++) $('loadbar').append(document.createElement('i'));
 for (let i = 0; i < 10; i++) $('batt').append(document.createElement('i'));
-const armNames = ['R1','R2','R3','R4','L1','L2','L3','L4'], armEls = armNames.map(n => {
-  const d = document.createElement('div'); d.className = 'armrow'; d.innerHTML = `<span>${n}</span><u><i></i></u><s></s>`; $('arms').append(d);
-  return {d, i:d.querySelector('i'), s:d.querySelector('s')};
+const armEls = RESUME.languages.map(l => {
+  const d = document.createElement('div'); d.className = 'armrow'; d.innerHTML = `<span>${l.name}</span><s>${l.code}</s>`; $('arms').append(d);
+  return {d, s:d.querySelector('s')};
 });
-const SUB = [['OPTIC ARRAY','1 × 52 MM LENS · IR RIM','TRACKING','OPEN'],['BELL SHELL','8 PETALS · GLASS PORT','SEALED','OPEN'],['PUMP CORE','REACTOR RING · 7 PISTONS','RUNNING','OUT'],['ARM CHAINS','224 LINKS · 8 ARMS','8 / 8 LIVE','APART'],['SIPHON','3 SLEEVES · 6-FLAP NOZZLE','IDLE','OPEN'],['BALANCE RING','8 RIM NODES · GYRO','SEALED','OPEN']];
+const SUB = [['ARCHITECTURE','SOFTWARE DESIGN · SYSTEMS','OWNED','ACTIVE'],['DATABASES','MODELLING · QUERY · STORAGE','OWNED','ACTIVE'],['INFRASTRUCTURE','DEPLOYMENT · OPERATIONS','OWNED','ACTIVE'],['PROJECT MANAGEMENT','PLANNING · DELIVERY','OWNED','ACTIVE'],['TECH STRATEGY','DECISIONS · DIRECTION','OWNED','ACTIVE'],['TEAM COORDINATION','TECHNICAL LEADERSHIP','OWNED','ACTIVE']];
 const subEls = SUB.map((s, i) => {
   const d = document.createElement('div'); d.className = 'sub'; d.innerHTML = `<span class="n">0${i + 1}</span><span>${s[0]}<i>${s[1]}</i></span><span class="ctag"></span>`; $('subs').append(d);
   return {d, tag:d.querySelector('.ctag')};
 });
-const ASM = {HERO:0, OPTICS:3.3, BELL:5.7, PUMP:7.5, 'ARM R2':9.9, SIPHON:12.7}, asmEls = {}, disEls = {};
-for (const k in ASM) { const b = document.createElement('button'); b.textContent = k; b.onclick = () => seekTo(k === 'HERO' ? 21 : ASM[k] - .05); $('asm').append(b); asmEls[k] = b; }
+const ASM = {HERO:21, OPTICS:3.3, BELL:5.7, PUMP:7.5, 'ARM R2':9.9, SIPHON:12.7}, asmEls = {}, disEls = {};
+RESUME.projects.forEach(p => {
+  const b = document.createElement('button');
+  b.textContent = p.code; b.title = p.title; b.className = 'project-btn';
+  b.setAttribute('data-section', 'projects');
+  b.setAttribute('data-project', p.id);
+  b.setAttribute('data-assistant', 'projects');
+  b.onclick = () => seekTo(ASM[p.stage] - .05);
+  $('asm').append(b);
+  asmEls[p.stage] = b;
+});
+for (const k of ['HERO', 'ARM R2', 'SIPHON']) {
+  const b = document.createElement('button');
+  b.textContent = k; b.title = 'View 3D assembly — ' + k;
+  b.onclick = () => seekTo(k === 'HERO' ? 21 : ASM[k] - .05);
+  $('asm').append(b);
+  asmEls[k] = b;
+}
 const manual = {};
 for (const k of ['LABELS','EXPLODED','JET WAKE','TURNTABLE']) { const b = document.createElement('button'); b.textContent = k; b.onclick = () => { manual[k] = !flag(k); manSec = lastSec; }; $('dis').append(b); disEls[k] = b; }
 SECT.forEach((s, i) => { if (!i || s.m === 'HOLDING' || s.t === 19.3) return; const e = document.createElement('em'); e.style.left = s.t / DUR * 100 + '%'; $('rail').append(e); });
@@ -634,46 +887,27 @@ function apply(t, wall) {
 }
 
 function hud(t) {
-  const sec = lastSec, jet = S.jet, p = pressure(t), kpa = Math.round(p), load = clamp(.12 + jet * (.25 + beat(t) * .72) + S.expl * .02);
-  setTxt($('kpa'), String(kpa).padStart(2, '0'));
-  setTxt($('thr'), String(Math.round(6 + jet * beat(t) * 210 + (t > 22 ? 4 : 0))));
-  setTxt($('pul'), (jet > .1 ? 1.8 : 0).toFixed(1) + ' HZ');
-  setTxt($('sipst'), jet > .1 ? 'SIPHON PULSE' : S.siphon > .1 ? 'SIPHON OPEN' : 'SIPHON IDLE');
+  const sec = lastSec;
+  // portfolio telemetry — one real value from the 3D rig, no invented metrics
+  setTxt($('armlive'), S.curl.toFixed(2));
   drawChart(t);
-  setTxt($('loadv'), Math.round(load * 100) + '%');
-  [...$('loadbar').children].forEach((b, i) => { const on = i / 50 < load; b.style.background = on ? (i > 35 ? 'var(--coral)' : i > 20 ? 'var(--teal)' : 'var(--ink)') : ''; });
-  const bat = 76 - Math.round(t * .22);
-  setTxt($('bat'), String(bat));
-  [...$('batt').children].forEach((b, i) => { b.style.background = i / 10 < bat / 100 ? (i < 3 ? 'var(--coral)' : 'var(--aqua)') : ''; });
-  setTxt($('draw'), (9.4 + jet * beat(t) * 18 + (S.optic + S.petal + S.pump + S.expl) * 7).toFixed(1) + ' W');
-  setTxt($('mot'), (22 + Math.round(t * .34)) + ' °C');
-  setTxt($('rt'), '00:00:' + String(Math.floor(t)).padStart(2, '0'));
-  $('st').innerHTML = `<span class="dot${sec.hot ? ' hot' : ''}"></span>${sec.st}`;
-  setTxt($('mm'), sec.m); setTxt($('ms'), sec.s); setTxt($('msg'), sec.log); setTxt($('iso'), 'ISOLATE · ' + sec.iso);
+  setTxt($('mm'), sec.m); setTxt($('ms'), sec.s); setTxt($('msg'), sec.log); setTxt($('iso'), 'VIEW · ' + sec.iso);
   const pct = t / DUR * 100; $('fill').style.width = pct + '%'; $('knob').style.left = pct + '%';
   setTxt($('tc'), `00:${String(Math.floor(t)).padStart(2, '0')} / 00:25`);
-  // attitude
-  const pitch = -S.tilt * 57.3 + 0.8 * Math.sin(t * .8), roll = S.roll * 57.3 + 1.1 * Math.sin(t * .6), vs = (sample(TR.py, t + .1) - sample(TR.py, t)) * 10 + .04 * Math.sin(t);
-  setTxt($('dp'), fmt2(pitch, '°')); setTxt($('dr'), fmt2(roll, '°')); setTxt($('dv'), fmt2(vs, ' M/S'));
-  setTxt($('dd'), (12.42 - S.py * .02 + .04 * Math.sin(t * .5)).toFixed(2) + ' M'); setTxt($('spd'), Math.abs(vs).toFixed(2) + ' M/S');
-  setTxt($('hold'), jet > .5 ? 'OFF' : 'STATION');
+  const rv = String(Math.round(t));
+  if ($('rail').getAttribute('aria-valuenow') !== rv) $('rail').setAttribute('aria-valuenow', rv);
+  // attitude / bearing indicator (decorative instrument, driven by the animation)
+  const pitch = -S.tilt * 57.3 + 0.8 * Math.sin(t * .8), roll = S.roll * 57.3 + 1.1 * Math.sin(t * .6);
   $('hg').setAttribute('transform', `rotate(${roll.toFixed(2)}) translate(0 ${(pitch * .4).toFixed(2)})`);
-  // arm rows
-  const det = sec.det;
-  armEls.forEach((a, i) => {
-    a.d.classList.toggle('det', !!det);
-    const v = Math.round(clamp(mix(.14 + hash(i) * .2 + .08 * Math.sin(t * 3 + i), .88 + .1 * Math.sin(t * .9 + i * 1.8), S.curl)) * 100);
-    if (det) { setTxt(a.s, 'DETACHED'); return; }
-    a.i.style.width = v + '%'; a.i.style.background = S.curl > .5 ? 'var(--coral)' : 'var(--ink)'; setTxt(a.s, (i === 1 && S.apart > .4) ? 'APART' : v + '%');
-  });
-  const at = $('armtag'); setTxt(at, sec.tag); at.classList.toggle('hot', !!det);
-  // subsystems
+  // language stack
+  armEls.forEach((a, i) => a.d.classList.toggle('on', sec.sub === i));
+  const at = $('armtag'); setTxt(at, sec.tag); at.classList.toggle('hot', !!sec.hot);
+  // professional roles
   subEls.forEach((s, i) => {
-    s.d.classList.toggle('on', sec.sub === i || (det && i === 3));
-    let txt = SUB[i][2]; if (i === 4 && jet > .1) txt = 'PULSING';
-    const open = sec.sub === i, hot = open || det;
-    setTxt(s.tag, det ? 'DETACHED' : open ? SUB[i][3] : txt);
-    s.tag.className = 'ctag' + (hot ? ' hot' : txt === 'IDLE' ? ' idle' : '');
+    s.d.classList.toggle('on', sec.sub === i || (sec.det && i === 3));
+    const open = sec.sub === i;
+    setTxt(s.tag, open ? SUB[i][3] : SUB[i][2]);
+    s.tag.className = 'ctag' + (open || sec.det ? ' hot' : '');
   });
   // buttons
   for (const k in asmEls) asmEls[k].classList.toggle('on', sec.b === k);
@@ -703,10 +937,33 @@ let last = performance.now();
 function loop(now) {
   const dt = Math.min(.05, (now - last) / 1000); last = now;
   if (!frozen) { if (playing && !scrub) playT = (playT + dt) % DUR; draw(playT, now / 1000); }
+  tickMascot(now);
   requestAnimationFrame(loop);
 }
 let frozen = false;
-document.fonts.ready.then(() => hud(playT));
+
+/* ---------- portfolio wiring ---------- */
+initNavigation();
+initMascot();
+
+$('kpa').textContent = String(RESUME.skillGroups.length).padStart(2, '0');
+$('thr').textContent = String(TOTAL_TECH).padStart(2, '0');
+$('loadv').textContent = String(RESUME.skillGroups.length).padStart(2, '0') + ' MODULES';
+[...$('loadbar').children].forEach((b, i) => { b.style.background = i < TOTAL_TECH ? (i < 8 ? 'var(--ink)' : i < 18 ? 'var(--teal)' : 'var(--coral)') : ''; });
+[...$('batt').children].forEach((b, i) => { b.style.background = i < 2 ? 'var(--coral)' : 'var(--aqua)'; });
+
+const mPanels = $('mPanels');
+if (mPanels) {
+  const closeSheet = () => { document.body.classList.remove('panels-open'); mPanels.setAttribute('aria-expanded', 'false'); mPanels.textContent = 'PANELS'; };
+  mPanels.addEventListener('click', () => {
+    const open = document.body.classList.toggle('panels-open');
+    mPanels.setAttribute('aria-expanded', String(open));
+    mPanels.textContent = open ? 'CLOSE' : 'PANELS';
+  });
+  document.addEventListener('click', e => { if (e.target.closest('[data-section]')) closeSheet(); });
+}
+
+document.fonts.ready.then(() => { if (lastSec) hud(playT); });
 requestAnimationFrame(loop);
     </script>
   </body>

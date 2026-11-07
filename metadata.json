@@ -1,6 +1,6 @@
 {
-  "name": "Medusa JF-4 — Field Simulator",
-  "description": "A robotic jellyfish you can take apart piece by piece, built live in three.js.",
+  "name": "Hari Krishna Kumar — Developer Portfolio",
+  "description": "Interactive developer portfolio: a preserved three.js jellyfish field simulator paired with a professional dossier for Hari Krishna Kumar.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

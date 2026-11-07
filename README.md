@@ -1,20 +1,60 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Hari Krishna Kumar — Developer Portfolio
 
-# Run and deploy your AI Studio app
+An interactive developer portfolio built on top of the Medusa JF-4 field
+simulator. The original three.js jellyfish — geometry, shaders, materials,
+lighting, camera choreography and the 25-second assembly timeline — is preserved
+intact. The dashboard has been re-labelled as a professional interface, and the
+resume content lives in a dossier overlay that opens from any panel.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/5983d015-de84-4dd7-ae44-12f3a3e45dc2
+- Vite 8 + TypeScript tooling
+- three.js (as declared in `package.json`; the original import map is retained)
+- Vanilla ES modules for the portfolio layer — no additional runtime dependencies
 
-## Run Locally
+## Run locally
 
-**Prerequisites:**  Node.js
+```bash
+bun install
+bun run dev
+```
 
+Open the URL Vite prints (defaults to `http://localhost:3000`).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Production build:
+
+```bash
+bun run build
+bun run preview
+```
+
+## Content
+
+Every resume string lives in `src/resume-data.js`:
+
+- name, designation, availability and professional profile
+- two roles (CTO at Yajurvedh, Guest Lecturer in Bengaluru)
+- nine skill groups and the eight-row stack panel
+- education (BCA, CGPA 8.06)
+- three project titles
+- contact details
+
+No employment dates, proficiency percentages or unverified metrics are
+displayed.
+
+## Interaction
+
+- Drag the canvas to orbit; the timeline plays automatically.
+- Click a panel (Expertise, Experience, Languages, Education, Projects,
+  Navigation, Roles, Career Journey) to open the matching dossier section.
+- Project buttons open the project section; HERO / ARM R2 / SIPHON seek the 3D
+  assembly view.
+- The mascot follows the pointer on desktop and appears at the tap point on
+  touch. Click a section to get a short contextual line.
+- `Download Resume` serves the supplied PDF from `public/`.
+- `Esc` closes the dossier.
+
+## Assets
+
+- `public/Hari_Krishna_Kumar_Resume.pdf` — supplied resume, served unchanged.
+- `public/mascot/*.png` — five supplied mascot states.
