@@ -19,7 +19,7 @@ export const RESUME = {
   profile: {
     discipline: 'FULL-STACK DEV',
     roles: '02 ROLES',
-    status: 'OPEN TO WORK',
+    status: 'OPEN TO OPPORTUNITIES',
   },
 
   education: {

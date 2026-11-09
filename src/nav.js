@@ -289,7 +289,7 @@ export function openDossier(id = 'about', projectId) {
     setActive(id);
     if (history.replaceState) history.replaceState(null, '', '#' + id);
     requestAnimationFrame(() => {
-      closeBtn && closeBtn.focus({ preventScroll: true });
+      closeBtn && closeBtn.focus();
       scrollToSection(id, projectId);
     });
   } else {

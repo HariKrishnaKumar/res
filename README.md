@@ -45,10 +45,12 @@ displayed.
 ## Interaction
 
 - Drag the canvas to orbit; the timeline plays automatically.
-- Click a panel (Expertise, Experience, Languages, Education, Projects,
-  Navigation, Roles, Career Journey) to open the matching dossier section.
-- Project buttons open the project section; HERO / ARM R2 / SIPHON seek the 3D
-  assembly view.
+- Click a dashboard panel (Technical Expertise, Professional Experience,
+  AI & Computer Vision, Profile, Education, Projects, Portfolio
+  Navigation) to open the matching dossier section.
+- Tentacle labels on the 3D model (3 project + 5 skill anchors) open the
+  Projects or Skills dossier section when clicked.
+- Project buttons in the Projects panel open the Projects section.
 - Use the sun/moon toggle in the header (or the dossier header) to switch
   between the light and dark technical themes. The choice is saved in
   `localStorage`; the system preference is used on a first visit.
