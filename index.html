@@ -90,10 +90,11 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 #cJet{top:8.7rem;width:23rem;height:17.8rem}
 #cPow{top:27.6rem;width:23rem;height:11.8rem}
 #cArm{top:40.5rem;width:23rem;height:18.9rem}
+#cProf{top:8.7rem;width:23rem;height:10rem}
 #cDep{top:19.7rem;width:23rem;height:10rem}
 #cAsm{top:30.7rem;width:23rem;height:10rem}
 #cDis{top:41.7rem;width:23rem;height:10rem}
-#cSub{top:52.7rem;width:23rem;height:10rem}
+#cDl{top:52.7rem;width:23rem;height:10rem}
 .jr{display:flex;justify-content:space-between;align-items:flex-end;margin-top:.5rem}
 #chart{display:block;width:100%;height:7.2rem;margin-top:.6rem}
 .foot{display:flex;justify-content:space-between;font-size:.66rem;letter-spacing:.12em;color:var(--mid);margin-top:.5rem}
@@ -650,7 +651,6 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
         <div class="logo"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="hkkg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="var(--coral)"/><stop offset="100%" stop-color="var(--teal)"/></linearGradient></defs><rect x="10" y="10" width="4" height="20" rx="2"/><rect x="18" y="10" width="4" height="20" rx="2"/><rect x="26" y="10" width="4" height="20" rx="2"/><path d="M12 14h16" stroke="var(--coral)"/><path d="M12 20h16" stroke="var(--teal)"/><path d="M12 26h16" stroke="var(--coral)"/></svg>HKK</div>
         <div class="head" data-section="about"><div class="k">FULL-STACK DEVELOPER / AI ENTHUSIAST / TECHNICAL EDUCATOR</div><h1>Hari Krishna Kumar<em>/</em></h1><div class="s">YAJURVEDH / PERSONAL DEVELOPER PORTFOLIO</div></div>
         <div class="load"><div class="row"><span>TECHNICAL EXPERTISE</span><b id="loadv">09 MODULES</b></div><div id="loadbar"></div><div class="row m"><span>LANGUAGES</span><span>FRAMEWORKS</span><span>AI · DATA</span></div></div>
-        <div class="identity"><img src="/profile/profile-photo.jpg" alt="Hari Krishna Kumar" class="identity-photo" width="44" height="44" loading="eager" decoding="async"/><div class="identity-placeholder" style="display:none">HKK</div><div class="identity-text"><div class="identity-name">Hari Krishna Kumar</div><div class="identity-role">Full-Stack Developer</div><div class="identity-org">CTO — Yajurvedh · Guest Lecturer</div></div></div>
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark theme" aria-pressed="false" title="Toggle light/dark theme">
           <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
           <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
@@ -680,7 +680,8 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
           <div class="foot"><span id="hold">Yajurvedh · Bengaluru</span><span id="spd">Open to Opportunities</span></div></section>
         <section class="card r" id="cAsm" data-section="projects"><div class="ct"><span>PROJECTS</span><small>05</small></div><div class="btns" id="asm"></div></section>
         <section class="card r" id="cDis" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>06</small></div><div class="btns" id="nav"></div></section>
-        <section class="card r" id="cSub" data-section="experience"><div class="ct"><span>PROFESSIONAL EXPERIENCE</span><small>07</small></div><div id="subs"></div></section>
+        <section class="card r" id="cDl" data-section="about"><div class="ct"><span>DOWNLOAD RESUME</span><small>08</small></div>
+          <div class="foot" style="margin-top:.5rem"><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a></div></section>
 
         <div id="mode" data-section="about"><div class="t">CURRENT PROJECT</div><div class="m" id="mm">AI-Powered Facial Recognition</div><div class="t" id="ms">AI &amp; COMPUTER VISION</div></div>
         <section class="logcard" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>09</small></div>
@@ -1061,10 +1062,13 @@ const armEls = RESUME.languages.map(l => {
   return {d, s:d.querySelector('s')};
 });
 const SUB = [['ARCHITECTURE','SOFTWARE DESIGN · SYSTEMS','OWNED','ACTIVE'],['DATABASES','MODELLING · QUERY · STORAGE','OWNED','ACTIVE'],['INFRASTRUCTURE','DEPLOYMENT · OPERATIONS','OWNED','ACTIVE'],['PROJECT MANAGEMENT','PLANNING · DELIVERY','OWNED','ACTIVE'],['TECH STRATEGY','DECISIONS · DIRECTION','OWNED','ACTIVE'],['TEAM COORDINATION','TECHNICAL LEADERSHIP','OWNED','ACTIVE']];
-const subEls = SUB.map((s, i) => {
-  const d = document.createElement('div'); d.className = 'sub'; d.innerHTML = `<span class="n">0${i + 1}</span><span>${s[0]}<i>${s[1]}</i></span><span class="ctag"></span>`; $('subs').append(d);
-  return {d, tag:d.querySelector('.ctag')};
-});
+let subEls = [];
+if ($('subs')) {
+  subEls = SUB.map((s, i) => {
+    const d = document.createElement('div'); d.className = 'sub'; d.innerHTML = `<span class="n">0${i + 1}</span><span>${s[0]}<i>${s[1]}</i></span><span class="ctag"></span>`; $('subs').append(d);
+    return {d, tag:d.querySelector('.ctag')};
+  });
+}
 const ASM = {OPTICS:3.3, BELL:5.7, PUMP:7.5}, asmEls = {};
 RESUME.projects.forEach(p => {
   const b = document.createElement('button');
