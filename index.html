@@ -145,8 +145,13 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 #mode .m{font:700 2.3rem/1.1 Inter,sans-serif;color:var(--coral);letter-spacing:-.005em;margin:.15rem 0}
 .logcard{position:absolute;left:26.5rem;right:26.5rem;top:60.8rem;height:7.8rem;background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.85);box-shadow:0 .4rem 2rem rgba(40,110,110,.07);padding:.9rem 1.2rem}
 .lg{display:grid;grid-template-columns:3.6rem 1fr;gap:1.1rem;align-items:center;margin-top:.15rem}
-#play{width:3.4rem;height:3.4rem;border-radius:50%;background:var(--coral);border:0;display:grid;place-items:center;cursor:pointer}
-#play svg{width:1.3rem;height:1.3rem;fill:#fff}
+.ct-tools{display:flex;align-items:center;gap:.55rem}
+.play-label{font-style:normal;font-size:.6rem;letter-spacing:.12em;color:var(--mid)}
+#play{width:2.2rem;height:2.2rem;border-radius:50%;background:var(--coral);border:0;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .15s,transform .15s}
+#play:hover{transform:scale(1.06)}
+#play:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+#play[aria-pressed="false"]{background:var(--teal)}
+#play svg{width:.85rem;height:.85rem;fill:#fff}
 .lgh{display:flex;justify-content:space-between;font-size:.66rem;letter-spacing:.14em;color:var(--mid)}
 #msg{color:var(--coral);font-weight:600}
 #rail{position:relative;height:1.6rem;cursor:pointer;margin-top:.2rem;touch-action:none}
@@ -164,7 +169,7 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
   .head{left:10.4rem;top:1rem}.head h1{font-size:2.2rem;margin:.3rem 0}.head .k{display:none}.head .s{font-size:.62rem;letter-spacing:.06em}
   #cAsm{left:1.6rem;right:1.6rem;width:auto;top:auto;bottom:9.8rem;height:auto;padding:.7rem .8rem}#cAsm .ct{display:none}#cAsm .btns{margin-top:0}
   #mode{left:1.6rem;top:7.4rem}#mode .m{font-size:2rem}
-  .logcard{left:1.6rem;right:1.6rem;top:auto;bottom:4.9rem;height:7.2rem}
+  .logcard{left:1.6rem;right:1.6rem;top:auto;bottom:4.9rem;height:auto;min-height:7.2rem}
 }
 
 /* ============================================================
@@ -703,7 +708,7 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
           <div class="foot" style="margin-top:.5rem"><a class="bot-dl" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a></div></section>
 
         <div id="mode" data-section="about"><div class="t">CURRENT PROJECT</div><div class="m" id="mm">AI-Powered Facial Recognition</div><div class="t" id="ms">AI &amp; COMPUTER VISION</div></div>
-        <section class="logcard" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>09</small></div>
+        <section class="logcard" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><div class="ct-tools"><button id="play" type="button" aria-label="Pause animation" aria-pressed="true" title="Pause animation"><svg viewBox="0 0 12 12" aria-hidden="true"><path id="pi" d="M2 1h3v10H2zM7 1h3v10H7z"/></svg></button><em class="play-label" id="playlabel">PAUSE</em><small>09</small></div></div>
           <div class="sectnav" id="sectnav"></div></section>
         <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
       </div>
@@ -1124,6 +1129,21 @@ addEventListener('resize', resize); resize();
 /* ---------- input ---------- */
 let playT = 0, playing = true, orbitX = 0, orbitY = 0, orbitXs = 0, orbitYs = 0, drag = null, scrub = false;
 const seekTo = t => { playT = clamp(t, 0, DUR - .001); };
+/* play / pause control */
+{
+  const playBtn = $('play'), playIcon = $('pi'), playLabel = $('playlabel');
+  if (playBtn && playIcon) {
+    const PAUSE_D = 'M2 1h3v10H2zM7 1h3v10H7z', PLAY_D = 'M3 1l8 5-8 5z';
+    playBtn.addEventListener('click', () => {
+      playing = !playing;
+      playIcon.setAttribute('d', playing ? PAUSE_D : PLAY_D);
+      playBtn.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+      playBtn.setAttribute('aria-pressed', String(playing));
+      playBtn.title = playing ? 'Pause animation' : 'Play animation';
+      if (playLabel) playLabel.textContent = playing ? 'PAUSE' : 'PLAY';
+    });
+  }
+}
 canvas.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY]; canvas.classList.add('drag'); canvas.setPointerCapture(e.pointerId); });
 canvas.addEventListener('pointermove', e => { if (!drag) return; orbitX -= (e.clientX - drag[0]) * .006; orbitY = clamp(orbitY + (e.clientY - drag[1]) * .004, -.9, .9); drag = [e.clientX, e.clientY]; });
 const endDrag = () => { drag = null; canvas.classList.remove('drag'); };
