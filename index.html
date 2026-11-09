@@ -9,7 +9,7 @@
     <meta property="og:description" content="Interactive developer portfolio of Hari Krishna Kumar — Full-Stack Developer, AI Enthusiast and Technical Educator." />
     <meta property="og:type" content="profile" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -75,6 +75,15 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 .identity-name{font:600 15px/1.2 Inter,sans-serif;color:var(--ink);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .identity-role{font-size:11px;letter-spacing:.08em;color:var(--coral);font-weight:600;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .identity-org{font-size:11px;line-height:1.35;color:var(--mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prof{display:flex;align-items:center;gap:.7rem;margin-top:.5rem}
+.prof-media{position:relative;width:3.6rem;height:3.6rem;flex:none;border:1px solid var(--line);background:var(--surface-2);overflow:hidden}
+.prof-photo{display:block;width:100%;height:100%;object-fit:cover}
+.prof-media.is-missing .prof-photo{display:none}
+.prof-placeholder{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font:700 .95rem Inter,sans-serif;color:var(--coral);background:var(--surface-2)}
+.prof-media.is-missing .prof-placeholder{display:flex}
+.prof-copy{flex:1;min-width:0}
+.prof-copy .foot{margin-top:.15rem}
+.prof-copy .foot:first-child{margin-top:0}
 .dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:var(--teal);margin-right:.5rem;vertical-align:.1rem}
 .dot.hot{background:var(--coral)}
 .plus{position:absolute;left:51rem;top:6.8rem;width:27rem;display:grid;grid-template-columns:repeat(14,1fr);row-gap:.8rem;color:var(--coral);font-size:.9rem;line-height:1;opacity:.55}
@@ -121,7 +130,9 @@ body{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--ink);-webki
 .btns button:hover{border-color:var(--coral)}
 .btns button.on{background:var(--coral);border-color:var(--coral);color:#fff}
 .sectnav{display:flex;gap:8px;flex-wrap:wrap;margin-top:.8rem}
-.sectnav button{font:600 .7rem 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--ink);background:var(--btn-bg);border:1px solid var(--line);padding:.55rem .9rem;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.sectnav button{position:relative;font:600 .7rem 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--ink);background:var(--btn-bg);border:1px solid var(--line);padding:.55rem .9rem .55rem 1.25rem;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.sectnav button::before{content:"";position:absolute;left:.5rem;top:50%;width:.34rem;height:.34rem;border-radius:50%;background:var(--coral);transform:translateY(-50%)}
+.sectnav button.is-active::before{background:#fff}
 .sectnav button:hover{border-color:var(--coral);color:var(--coral)}
 .sub{display:grid;grid-template-columns:2rem 1fr auto;align-items:center;margin-top:.32rem;font-size:.74rem;font-weight:500;letter-spacing:.06em;position:relative}
 .sub .n{color:var(--faint);font-weight:400;font-size:.68rem}
@@ -673,20 +684,28 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
           <div class="foot" style="margin-top:.55rem;border-top:1px solid var(--line);padding-top:.5rem"><span>CURRENT FOCUS</span><span id="armlive">FACIAL RECOGNITION</span></div></section>
 
         <section class="card r" id="cProf" data-section="about"><div class="ct"><span>PROFILE</span><small>01</small></div>
-          <div class="foot" style="margin-top:.5rem"><span>HARI KRISHNA KUMAR</span><span id="profrole">Full-Stack Developer</span></div>
-          <div class="foot"><span>CTO — YAJURVEDH</span><span>GUEST LECTURER</span></div></section>
+          <div class="prof">
+            <div class="prof-media">
+              <img class="prof-photo" src="public/profile/profile-photo.jpg" alt="Hari Krishna Kumar" width="56" height="56" loading="eager" decoding="async" />
+              <span class="prof-placeholder" aria-hidden="true">HKK</span>
+            </div>
+            <div class="prof-copy">
+              <div class="foot"><span>HARI KRISHNA KUMAR</span><span id="profrole">Full-Stack Developer</span></div>
+              <div class="foot"><span>CTO — YAJURVEDH</span><span>GUEST LECTURER</span></div>
+            </div>
+          </div></section>
         <section class="card r" id="cDep" data-section="education"><div class="ct"><span>EDUCATION</span><small>04</small></div>
           <div class="dep"><dl><dt>DEGREE</dt><dd id="dd">Bachelor of Computer Applications (BCA)</dd><dt>CGPA</dt><dd id="dv">8.06</dd><dt>FIELD</dt><dd id="dp">Computer Applications</dd><dt>STATUS</dt><dd id="dr">Complete</dd></dl></div>
           <div class="foot"><span id="hold">Yajurvedh · Bengaluru</span><span id="spd">Open to Opportunities</span></div></section>
         <section class="card r" id="cAsm" data-section="projects"><div class="ct"><span>PROJECTS</span><small>05</small></div><div class="btns" id="asm"></div></section>
         <section class="card r" id="cDis" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>06</small></div><div class="btns" id="nav"></div></section>
         <section class="card r" id="cDl" data-section="about"><div class="ct"><span>DOWNLOAD RESUME</span><small>08</small></div>
-          <div class="foot" style="margin-top:.5rem"><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a></div></section>
+          <div class="foot" style="margin-top:.5rem"><a class="bot-dl" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a></div></section>
 
         <div id="mode" data-section="about"><div class="t">CURRENT PROJECT</div><div class="m" id="mm">AI-Powered Facial Recognition</div><div class="t" id="ms">AI &amp; COMPUTER VISION</div></div>
         <section class="logcard" data-section="about"><div class="ct"><span>PORTFOLIO NAVIGATION</span><small>09</small></div>
           <div class="sectnav" id="sectnav"></div></section>
-        <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
+        <div class="bot"><span>FULL-STACK DEVELOPMENT &nbsp;·&nbsp; AI &amp; COMPUTER VISION &nbsp;·&nbsp; TECHNICAL EDUCATION</span><a class="bot-dl" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME ↓</a><span>YAJURVEDH &nbsp;·&nbsp; PERSONAL PORTFOLIO <b>//////</b></span></div>
       </div>
     </main>
 
@@ -700,7 +719,7 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
             <svg class="theme-icon sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
             <svg class="theme-icon moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
           </button>
-          <a class="dossier-dl" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a>
+          <a class="dossier-dl" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME PDF ↓</a>
           <button type="button" class="dossier-close" data-close aria-label="Close dossier">×</button>
         </div>
         <div class="dossier-scroll" id="dossierScroll"></div>
@@ -710,7 +729,7 @@ html.dossier-open,html.dossier-open body{overflow:hidden!important}
     <nav class="mbar" aria-label="Mobile actions">
       <button type="button" id="mPanels" aria-expanded="false" aria-controls="hudPanels">PANELS</button>
       <button type="button" data-section="about">DOSSIER</button>
-      <a href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME ↓</a>
+      <a href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">RESUME ↓</a>
     </nav>
 
     <script type="module">
@@ -1191,7 +1210,7 @@ function hud(t) {
   setTxt($('batlbl'), RESUME.experience.map((r) => r.role).join(' · '));
   setTxt($('curproj'), RESUME.projects[0].title);
   setTxt($('armlive'), sec.tag);
-  setTxt($('profrole'), RESUME.designation);
+  setTxt($('profrole'), RESUME.designation.split('|')[0].trim());
   // language stack highlight
   armEls.forEach((a, i) => a.d.classList.toggle('on', sec.sub === i));
   const at = $('armtag'); setTxt(at, sec.tag); at.classList.toggle('hot', !!sec.tag);
@@ -1245,6 +1264,14 @@ if (identityImg && identityPlaceholder) {
     identityImg.style.display = 'none';
     identityPlaceholder.style.display = 'flex';
   }
+}
+
+const profImg = document.querySelector('.prof-photo');
+const profMedia = profImg && profImg.closest('.prof-media');
+if (profImg && profMedia) {
+  const missing = () => profMedia.classList.add('is-missing');
+  profImg.addEventListener('error', missing, { once: true });
+  if (profImg.complete && profImg.naturalWidth === 0) missing();
 }
 
 $('kpa').textContent = String(RESUME.skillGroups.length).padStart(2, '0');

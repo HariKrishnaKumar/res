@@ -55,7 +55,7 @@ function about() {
           <div class="about-role">${esc(r.designation)}</div>
           <p class="about-copy">${esc(r.about)}</p>
           <div class="about-actions">
-            <a class="btn-solid" href="/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME</a>
+            <a class="btn-solid" href="public/Hari_Krishna_Kumar_Resume.pdf" download="Hari_Krishna_Kumar_Resume.pdf">DOWNLOAD RESUME</a>
             <button type="button" class="btn-line" data-section="contact">GET IN TOUCH</button>
           </div>
           <dl class="about-facts">
@@ -74,7 +74,7 @@ function about() {
             </div>
             <img
               class="profile-photo"
-              src="/profile/profile-photo.jpg"
+              src="public/profile/profile-photo.jpg"
               alt="Hari Krishna Kumar"
               width="698"
               height="915"
@@ -223,7 +223,7 @@ function wireProfileImage() {
 
 function render() {
   scroller.innerHTML = [about(), skills(), experience(), education(), projects(), contact()].join('');
-  document.querySelectorAll('#dossierNav, #nav').forEach((host) => {
+  document.querySelectorAll('#dossierNav, #nav, #sectnav').forEach((host) => {
     host.innerHTML = navMarkup();
   });
   wireProfileImage();
